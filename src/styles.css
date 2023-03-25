@@ -1,0 +1,117 @@
+:root {
+    --dark-purple: #22223B;
+    --light-purple: #4A4E69;
+    --dirty-pink: #9A8C98;
+    --dark-beige: #C9ADA7;
+    --light-beige: #F2E9E4;
+    --box-shadow: 0 .5rem 1.5rem rgba(0,0,0, .1);
+
+    --dark: #2d3142;
+    --shadow: #bfc0c0;
+    --white: #ffffff;
+    --orange: #ef8354;
+    --grey: #4f5d75;
+  }
+
+* {
+    box-sizing: border-box;
+    /* overflow-x: hidden; */
+    /* scroll-padding: 5.5rem; */
+    /* scroll-behavior: smooth; */
+}
+
+body {
+    margin: 0;
+    background-color: var(--white);
+}
+
+/* .pageContainer {
+    margin: 1rem;
+    text-align: center;
+} */
+
+.nav {
+    /* ruchome menu */
+    position: fixed;   
+    top: 0; left:0; right: 0; 
+    background-color: var(--white);
+    color: black;
+    /* box-shadow: var(--grey); */
+    box-shadow: 1px 5px 5px var(--shadow);
+    padding: 1rem 7%; 
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    /* z-index: 1000; */
+    /* 1 jednostka do góry, 7% swojej przstrzeni po bokach */
+    
+}
+
+.site-title {
+    font-size: 2rem;
+}
+
+.nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav a {
+    color: inherit;
+    text-decoration: none;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    padding: .25rem;
+}
+
+.nav li.active {
+    background-color: var(--dark);
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+}
+
+.nav li:hover {
+    background-color: var(--dark);
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+}
+
+/* media queries https://www.youtube.com/watch?v=MJUssi2c6Ls*/
+/* @media (max-width: 700px) {
+    .nav {
+        position: absolute;
+        display: inline-block;
+        top: 0; left:0; right: 0; 
+        background-color: #9A8C98;
+        border-top: .01rem solid rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+    }
+
+    .nav ul {
+        display: block;
+        padding: 1.5rem;
+        margin: .1rem;
+        font-size: 1rem;
+        background: #9A8C98;
+    }
+    
+    .nav a {
+        top: 100%; left:0; right: 0; 
+        display: block;
+        padding: 1.5rem;
+        margin: 1rem;
+        font-size: 1.5rem;
+        background: #9A8C98;
+        /* color: inherit;
+        text-decoration: none;
+        height: 90%;
+        display: flex;
+        align-items: center;
+        padding: .25rem; 
+    }
+} */
+
