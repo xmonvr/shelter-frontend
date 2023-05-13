@@ -72,12 +72,15 @@ body {
     background-color: var(--dark);
     border-radius: .5rem;
     padding: .5rem 1rem;
+    color: white;
 }
 
 .nav li:hover {
     background-color: var(--dark);
     border-radius: .5rem;
     padding: .5rem 1rem;
+    color: white;
+
 }
 
 /* media queries https://www.youtube.com/watch?v=MJUssi2c6Ls*/
