@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Navbar from "./Components/Navbar";
 import Adopt from "./pages/Adopt";
@@ -8,6 +7,7 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage"
 import {Route, Routes} from "react-router-dom";
+import Registration from './pages/Registration';
 
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<Registration />} />
           </Routes>
         </div>
       </>
