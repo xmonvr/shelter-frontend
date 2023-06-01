@@ -1,7 +1,27 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Link , useMatch, useResolvedPath } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({isLoggedIn, setLoggedIn}) {
+
+    // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+    const handleLogout = async () => {
+        const token = localStorage.getItem("token");
+        console.log("token --> " + token);
+        try {
+            await fetch('http://localhost:8081/auth/logout', {
+                method: 'GET',
+                headers: {
+                    "Authorization": token,
+                },
+            });
+
+            setLoggedIn(false);
+        } catch (error) {
+            console.error('Błąd wylogowywania:', error);
+        }
+    };
+
     return <nav className="nav">
         {/*dodajemy clas name, zeby dalo sie stylowac*/}
         <Link to="/" className="site-title">Schronisko</Link>
@@ -10,7 +30,11 @@ export default function Navbar() {
             <CustomLink to="/donate">Wesprzyj</CustomLink>
             <CustomLink to="/contact">Kontakt</CustomLink>
             <CustomLink to="/about">O nas</CustomLink>
-            <CustomLink to="/login">Zaloguj</CustomLink>
+            {isLoggedIn ? (
+                <button onClick={handleLogout}>Wyloguj</button>
+            ) : (
+                <CustomLink to="/login">Zaloguj</CustomLink>
+            )}
         </ul>
     </nav>
 
@@ -22,7 +46,7 @@ export default function Navbar() {
         //     <a href="/python/">Python</a>
         // </nav>
     }
-}
+
 function CustomLink({to, children, ...props}) {
     // const path = window.location.pathname\
     const resolvedPath = useResolvedPath(to)        //todo nie wiem czy uzycie tego jest
@@ -38,4 +62,5 @@ function CustomLink({to, children, ...props}) {
             </Link>
         </li>
     )
+}
 }

@@ -1,7 +1,7 @@
 import './LoginPage.css';
 import {Link, useNavigate} from "react-router-dom";
 
-export default function LoginPage() {
+export default function LoginPage({setLoggedIn}) {
     const navigate = useNavigate();
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -21,17 +21,18 @@ export default function LoginPage() {
             });
 
             if (response.ok) {
-                // Jeśli odpowiedź jest OK, można wykonać odpowiednie akcje na froncie, np. wyświetlić komunikat o powodzeniu
+                const token = response.headers.get("Authorization");
+                localStorage.setItem("token", token);
+                setLoggedIn(true);
                 navigate("/");
-                // console.log("Rejestracja udana!");
             } else {
-                // Jeśli odpowiedź nie jest OK, można obsłużyć błędy, np. wyświetlić komunikat o niepowodzeniu
                 console.error("Błąd podczas rejestracji:", response.statusText);
             }
         } catch (error) {
             console.error("Błąd podczas komunikacji z serwerem:", error);
         }
     }
+
     return (
         <div className="login-page">
             <form className="login-form" onSubmit={handleLogin}>
