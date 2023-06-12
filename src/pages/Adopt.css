@@ -1,0 +1,126 @@
+:root {
+    --dark-purple: #22223B;
+    --light-purple: #4A4E69;
+    --dirty-pink: #9A8C98;
+    --dark-beige: #C9ADA7;
+    --light-beige: #F2E9E4;
+    --box-shadow: 0 .5rem 1.5rem rgba(0,0,0, .1);
+
+    --dark: #2d3142;
+    --shadow: #bfc0c0;
+    --white: #ffffff;
+    --orange: #ef8354;
+    --grey: #4f5d75;
+}
+
+.adopt {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.animal-filtration-form {
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    width: 45%;
+    min-width: 30rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.label-ageMin-filtration {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-right: 0.2rem;
+    margin-left: 1rem;
+    text-align: left;
+}
+
+.label-ageMax-filtration,
+.label-gender-filtration,
+.label-typeOfAnimal-filtration {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-right: 0.2rem;
+    margin-left: 0.2rem;
+}
+
+.input-ageMin-filtration,
+.input-ageMax-filtration,
+.select-gender,
+.select-typeOfAnimal {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.input-submit-filtration {
+    width: 50%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    background-color: var(--orange);
+    color: var(--white);
+    border: none;
+    border-radius: 20px;
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.input-submit-filtration:hover {
+    background-color: var(--dark);
+}
+
+.animal {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.animal-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.animal-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--orange);
+    border-radius: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.animal-img:hover {
+    color: white;
+    background-color: var(--dark);
+    text-decoration: none;
+    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+}
+
+.animal-img img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.animal-img p {
+    font-size: 16px;
+    text-align: center;
+}
