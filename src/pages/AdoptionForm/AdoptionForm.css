@@ -1,0 +1,177 @@
+.container-adoption-form {
+    background-color: var(--light-beige);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px; /* dodanie odstępu na górze kontenera równego wysokości top bar */
+}
+
+.form-adoption-form {
+    margin-top: 30px;
+    max-width: 75%;
+    padding: 3rem;
+    text-align: center;
+}
+
+.personal-info-header-adoption-form,
+.small-adoption-form {
+    color: var(--dark);
+}
+
+.personal-info-adoption-form/*,*/
+    /*.animal-info-adoption-form */{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow-light);
+    padding: 3rem;
+    margin-top: 1rem;
+}
+
+.first-name-adoption-form,
+.last-name-adoption-form,
+.phone-number-adoption-form,
+.email-adoption-form,
+.date-of-birth-adoption-form ,
+.street-adoption-form,
+.house-number-adoption-form,
+.city-adoption-form,
+.zip-code-adoption-form,
+.country-adoption-form/*,
+.name-adoption-form,
+.type-of-animal-adoption-form,
+.chip-number-adoption-form,
+.vaccinated-adoption-form,
+.age-adoption-form*/ {
+    display: inline-flex;
+    margin-right: 10px;
+    font-weight: bold;
+    width: 100%;
+    /*grid-template-columns: 5fr 2fr;*/
+    /*gap: 10px;*/
+}
+
+.label-first-name-adoption-form,
+.label-last-name-adoption-form,
+.label-phone-number-adoption-form,
+.label-email-adoption-form,
+.label-date-of-birth-adoption-form ,
+.label-street-adoption-form,
+.label-house-number-adoption-form,
+.label-city-adoption-form,
+.label-zip-code-adoption-form,
+.label-country-adoption-form/*,
+.label-name-adoption-form,
+.label-type-of-animal-adoption-form,
+.label-chip-number-adoption-form,
+.label-vaccinated-adoption-form,
+.label-age-adoption-form*/ {
+    display: block;
+    width: 15%;
+    margin-bottom: 1rem;
+    text-align: left;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.input-first-name-adoption-form,
+.input-last-name-adoption-form,
+.input-phone-number-adoption-form,
+.input-email-adoption-form,
+.input-date-of-birth-adoption-form ,
+.input-street-adoption-form,
+.input-house-number-adoption-form,
+.input-city-adoption-form,
+.input-zip-code-adoption-form,
+.input-country-adoption-form/*,
+.input-name-adoption-form,
+.input-type-of-animal-adoption-form,
+.input-chip-number-adoption-form,
+.input-vaccinated-adoption-form,
+.input-age-adoption-form*/ {
+    width: 85%;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-light);
+}
+
+/*.animal-info-header-adoption-form,*/
+.questions-header-adoption-form {
+    margin-top: 2rem;
+    color: var(--dark);
+}
+
+/*.small-animal-adoption-form,*/
+.small-questions-adoption-form {
+    color: var(--dark);
+}
+
+/*.questions-adoption-form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}*/
+
+.questions-box-adoption-form {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+}
+
+.question-adoption-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 20px;
+    text-decoration: none;
+    color: black;
+    box-shadow: var(--box-shadow-light);
+}
+
+.label-question-adoption-form {
+    margin-top: 0.5rem;
+    display: block;
+    /*width: 15%;*/
+    margin-bottom: 1rem;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.input-question-adoption-form {
+    width: 95%;
+    min-height: 100px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-light);
+}
+
+.input-send-adoption-form,
+.input-download-adoption-form {
+    width: 50%;
+    margin-top: 1rem;
+    background-color: var(--orange);
+    color: var(--white);
+    border: none;
+    border-radius: 20px;
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.input-send-adoption-form:hover,
+.input-download-adoption-form:hover {
+    background-color: var(--dark);
+    box-shadow: var(--box-shadow-dark);
+}
