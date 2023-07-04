@@ -9,6 +9,8 @@ import LoginPage from "./pages/LoginPage"
 import {Route, Routes} from "react-router-dom";
 import Registration from './pages/Registration';
 import { useState } from 'react';
+import Animal from "./pages/Animal";
+import AdoptionForm from "./pages/AdoptionForm/AdoptionForm";
 
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<LoginPage setLoggedIn={setLoggedIn} />} />
             <Route path="/register" element={<Registration />} />
+            <Route path="/animal/:id" element={<Animal />} />
+            <Route path="/adoption-form/:id" element={<AdoptionForm />} />        {/*todo powinno byc tak jak wyzej animal z id*/}
           </Routes>
         </div>
       </>
