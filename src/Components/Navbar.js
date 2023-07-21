@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link , useMatch, useResolvedPath } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 export default function Navbar({isLoggedIn, setLoggedIn}) {
 
-    // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const [userRole, setUserRole] = useState('');
+
+    useEffect(() => {
+        //https://www.npmjs.com/package/jwt-decode
+        const token = localStorage.getItem("token").replace('Bearer ', '');
+        const decodedToken = jwt_decode(token);
+        const role = decodedToken.authorities[0].authority;
+        setUserRole(role);
+        console.log("token --> " + token)
+        console.log("decoded token --> " + JSON.stringify(decodedToken))
+        console.log("Role: ", role);
+    }, [isLoggedIn]);
 
     const handleLogout = async () => {
         const token = localStorage.getItem("token");
@@ -26,6 +38,12 @@ export default function Navbar({isLoggedIn, setLoggedIn}) {
         {/*dodajemy clas name, zeby dalo sie stylowac*/}
         <Link to="/" className="site-title">Schronisko</Link>
         <ul>
+            <div className="administration-nav-bar">
+                {userRole === "ADMIN" &&
+                    (<CustomLink to="/administration-page">Administracja</CustomLink>)
+                }
+            </div>
+
             <CustomLink to="/adopt">Zaadoptuj</CustomLink>
             <CustomLink to="/donate">Wesprzyj</CustomLink>
             <CustomLink to="/contact">Kontakt</CustomLink>
