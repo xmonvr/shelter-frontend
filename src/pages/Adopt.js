@@ -1,8 +1,7 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import React, {useEffect} from 'react';
 import {useState} from "react";
-import "./Adopt.css"
-import dog1Image from "./photo/pies1.jpg";
+import "./Adopt.css";
 
 export default function Adopt() {
 
@@ -17,17 +16,49 @@ function AnimalList() {     //komponent
     const [ageMax, setAgeMax] = useState("");
     const [gender, setGender] = useState("");
     const [typeOfAnimal, setTypeOfAnimal] = useState("");
+    const [animalImages, setAnimalImages] = useState({});
 
     useEffect(() => {
         getAnimalsList();
     }, []);
 
+    useEffect(() => {
+        if (animalsList.length > 0) {
+            animalsList.forEach(animal => {
+                getImageByAnimalId(animal.id);
+            });
+        }
+    }, [animalsList]);
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const typeFilter = queryParams.get('type');
+
     const getAnimalsList = async (event) => {
-        const data = {
-            ageMin: ageMin || "",
-            ageMax: ageMax || "",
-            gender: gender || "",
-            typeOfAnimal: typeOfAnimal || ""
+        let data = {};
+
+        if(typeFilter === "DOG") {
+            data = {
+                ageMin: ageMin || "",
+                ageMax: ageMax || "",
+                gender: gender || "",
+                typeOfAnimal: typeOfAnimal || "DOG"
+            }
+        } else if (typeFilter === "CAT") {
+            data = {
+                ageMin: ageMin || "",
+                ageMax: ageMax || "",
+                gender: gender || "",
+                typeOfAnimal: typeOfAnimal || "CAT"
+            }
+        }
+        else {
+            data = {
+                ageMin: ageMin || "",
+                ageMax: ageMax || "",
+                gender: gender || "",
+                typeOfAnimal: typeOfAnimal || ""
+            }
         }
 
         const params = new URLSearchParams(data);
@@ -36,7 +67,7 @@ function AnimalList() {     //komponent
         try {
             const url = `http://localhost:8081/animal/filtered-animals?${queryString}`;
             const response = await fetch(url);
-
+            console.log("adopt url --> " + url)
             if (response.ok) {
                 const animals = await response.json();
                 setAnimalsList(animals);
@@ -48,6 +79,28 @@ function AnimalList() {     //komponent
         }
 
     }
+
+    const getImageByAnimalId = async (animalId) => {
+
+        try {
+            const url = `http://localhost:8081/files/get-image-by-animalId?animalId=${animalId}`;
+            const response = await fetch(url);
+            console.log("id --> " + animalId);
+            if (response.ok) {
+                const image = await response.blob();
+                const imageUrl = URL.createObjectURL(image);
+                // aktualizujemy stan animalImages o nowy URL zdjęcia dla danego identyfikatora zwierzęcia
+                setAnimalImages(prevAnimalImages => ({
+                    ...prevAnimalImages,
+                    [animalId]: imageUrl,
+                }));
+            } else {
+                console.error("Błąd podczas pobierania obrazu zwierzaka: ", response.statusText);
+            }
+        } catch (error) {
+            console.error("Błąd podczas komunikacji z serwerem: ", error);
+        }
+    };
 
     return (
         <div>
@@ -63,7 +116,8 @@ function AnimalList() {     //komponent
                     <option value="ONA">ONA</option>
                 </select>
                 <label className="label-typeOfAnimal-filtration" htmlFor="typeOfAnimal">Typ:</label>
-                <select className="select-typeOfAnimal" name="typeOfAnimal" id="select-typeOfAnimal" value={typeOfAnimal || ""} onChange={(event) => setTypeOfAnimal(event.target.value)}>
+                <select className="select-typeOfAnimal" name="typeOfAnimal" id="select-typeOfAnimal"
+                        value={typeOfAnimal || " "} onChange={(event) => setTypeOfAnimal(event.target.value)}>
                     <option value="">---</option>
                     <option value="DOG">PIES</option>
                     <option value="CAT">KOT</option>
@@ -75,7 +129,7 @@ function AnimalList() {     //komponent
             <div className="animal-box">
                 {animalsList.map(animal => (
                     <Link to={`/animal/${animal.id}`} key={animal.id} className="animal-img">
-                        <img src={dog1Image} alt={animal.name} />
+                        <img src={animalImages[animal.id]} alt={animal.name} />
                         <p>{animal.name}</p>
                     </Link>
                 ))}

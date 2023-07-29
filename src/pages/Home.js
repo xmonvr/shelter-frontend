@@ -8,16 +8,16 @@ export default function Home() {
                 <p>Wesprzyj/cytat o zwierzętach ze schroniska/przesuwane różne informacje</p>
             </div>
             <div className='container'>
-                <Link to="/adopt-a-dog" className="adopt-a-dog">
+                <Link to="/adopt?type=DOG" className="adopt-a-dog">
                     Adoptuj psa
                 </Link>
-                <Link to="/adopt-a-cat" className="adopt-a-cat">
+                <Link to="/adopt?type=CAT" className="adopt-a-cat">
                     <p>Adoptuj kota</p>
                 </Link>
                 <Link to="/donate" className="support">
                     <p>Wesprzyj nas</p>
                 </Link>
-                <Link to="/help" className="help">
+                <Link to="/voluntary" className="voluntary">
                     <p>Wolonariat</p>
                 </Link>
             </div>

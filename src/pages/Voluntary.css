@@ -1,0 +1,32 @@
+.container-voluntary {
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.box-voluntary {
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow-light);
+    padding: 2rem;
+    height: 82vh;
+    width: 190vh;
+}
+
+
+.header-voluntary {
+    color: var(--dark);
+    margin-bottom: 1rem;
+}
+
+.info-voluntary {
+    display: inline-flex;
+    margin-right: 10px;
+    width: 100%;
+    white-space: pre-wrap;
+    font-size: 15px;
+    text-decoration: none;
+}
+

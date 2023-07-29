@@ -1,11 +1,11 @@
 import "./Animal.css"
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import dog1Image from "./photo/pies1.jpg";
 
 export default function Animal() {
 
     const [animalInfo, setAnimalInfo] = useState("");
+    const [animalImage, setAnimalImage] = useState("");
     const { id } = useParams();
 
     const getAnimalById = async () => {
@@ -19,8 +19,29 @@ export default function Animal() {
                 console.log("info: " + info.name)
                 setAnimalInfo(info);
                 console.log("name: ", animalInfo)
+                console.log("image: ", )
             } else {
                 console.error("Błąd podczas pobierania informacji o zwierzęciu: ", response.statusText);
+                //todo dodać, że tylko  zalogowany uzytkownik moze wysylac formularz adopcyjny. wtedy po kliknięciu
+                //"Adoptuj" przekierowuje na stronę logowania
+            }
+        } catch (error) {
+            console.error("Błąd podczas komunikacji z serwerem: ", error);
+        }
+    };
+
+    const getImageByAnimalId = async () => {
+
+        try {
+            const url = `http://localhost:8081/files/get-image-by-animalId?animalId=${id}`;
+            const response = await fetch(url);
+            console.log("id --> " + id);
+            if (response.ok) {
+                const image = await response.blob();
+                const imageUrl = URL.createObjectURL(image);
+                setAnimalImage(imageUrl);
+            } else {
+                console.error("Błąd podczas pobierania obrazu zwierzaka: ", response.statusText);
             }
         } catch (error) {
             console.error("Błąd podczas komunikacji z serwerem: ", error);
@@ -38,12 +59,13 @@ export default function Animal() {
 
     useEffect(() => {
         getAnimalById();
+        getImageByAnimalId()
     }, []);
 
     return (
         <div className="animal-animal">
             <div className="leftside-animal">
-                <img src={dog1Image} alt="animal" className="photo-animal"/>
+                <img src={animalImage} alt="animal" className="photo-animal"/>
             </div>
             <div className="rightside-animal">
                 <div className="info-animal">
@@ -51,6 +73,7 @@ export default function Animal() {
                     <p>Typ: {convertTypeOfAnimal(animalInfo.typeOfAnimal)} </p>
                     <p>Płeć: {animalInfo.gender}</p>
                     <p>Wiek: {animalInfo.age}</p>
+                    <p>Id: {animalInfo.id}</p>
                     <p>Opis: {animalInfo.name} jest młodym ?? o takim i takim charakterze. Uwielbia inne zwierzęta, jest przyjazny. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur,
                     debitis dolor dolorum eligendi eos est fuga id, iste laborum libero magnam nam numquam quasi quia sequi, ullam voluptates! Accusantium, blanditiis doloribus hic illo
                     tenetur voluptatum? Consequatur ipsa, obcaecati. Animi cumque, enim est et eveniet explicabo facere facilis ipsa iste itaque iusto nam natus necessitatibus nemo

@@ -61,7 +61,7 @@
   /* text-decoration: none; */
 }
 
-.help {
+.voluntary {
   width: 15%;
   max-width: 15rem;
   height: 27vh;
@@ -100,7 +100,7 @@
 .adopt-a-dog:hover,
 .adopt-a-cat:hover,
 .support:hover,
-.help:hover {
+.voluntary:hover {
   color: white;
   background-color: var(--dark);
   text-decoration: none;

@@ -50,7 +50,8 @@
 .delete-animal-administration-page,
 .edit-animal-administration-page,
 .edit-about-administration-page,
-.edit-voluntary-administration-page {
+.edit-voluntary-administration-page,
+.edit-contact-administration-page {
     margin-left: 1rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -72,7 +73,8 @@
 .delete-animal-administration-page:hover,
 .edit-animal-administration-page:hover,
 .edit-about-administration-page:hover,
-.edit-voluntary-administration-page:hover {
+.edit-voluntary-administration-page:hover,
+.edit-contact-administration-page:hover {
     color: white;
     background-color: var(--dark);
     text-decoration: none;

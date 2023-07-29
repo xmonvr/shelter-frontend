@@ -24,6 +24,9 @@ export default function AdministrationPage() {
                 <Link to="/edit-voluntary" className="edit-voluntary-administration-page">
                     <p>Edytuj zakładkę Wolontariat</p>
                 </Link>
+                <Link to="/edit-contact" className="edit-contact-administration-page">
+                    <p>Edytuj zakładkę Kontakt</p>
+                </Link>
             </div>
         </div>
     )

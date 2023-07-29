@@ -2,7 +2,6 @@ import './App.css';
 import Navbar from "./Components/Navbar";
 import Adopt from "./pages/Adopt";
 import Donate from "./pages/Donate";
-import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage"
@@ -13,6 +12,13 @@ import Animal from "./pages/Animal";
 import AdoptionForm from "./pages/AdoptionForm/AdoptionForm";
 import AdministrationPage from "./pages/admin/AdministrationPage";
 import CreateAnimal from "./pages/admin/CreateAnimal/CreateAnimal";
+import DeleteAnimal from "./pages/admin/deleteAnimal/DeleteAnimal";
+import EditAnimal from "./pages/admin/editAnimal/EditAnimal";
+import EditAboutUs from "./pages/admin/editAboutUs/EditAboutUs";
+import EditVoluntary from "./pages/admin/editVoluntary/EditVoluntary";
+import Contact from "./pages/Contact";
+import Voluntary from "./pages/Voluntary";
+import EditContact from "./pages/admin/editContact/EditContact";
 
 
 function App() {
@@ -36,6 +42,12 @@ function App() {
             <Route path="/adoption-form/:id" element={<AdoptionForm />} />
             <Route path="/administration-page" element={<AdministrationPage />} />
             <Route path="/add-animal" element={<CreateAnimal />} />
+            <Route path="/delete-animal" element={<DeleteAnimal />} />
+            <Route path="/edit-animal" element={<EditAnimal />} />
+            <Route path="/edit-about" element={<EditAboutUs/>} />
+            <Route path="/edit-voluntary" element={<EditVoluntary/>} />
+            <Route path="/edit-contact" element={<EditContact/>} />
+            <Route path="/voluntary" element={<Voluntary/>} />
           </Routes>
         </div>
       </>
