@@ -23,12 +23,14 @@ import EditContact from "./pages/admin/editContact/EditContact";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userRole, setUserRole] = useState('');
+
     const setLoggedIn = (value) => {        //definicja funkcji przyjmujacej jedna wartosc value
         setIsLoggedIn(value);
     };
   return (
-      <>
-        <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
+      <>         {/*(<> ... </>) to specjalny rodzaj komponentu, który pozwala na zgrupowanie wielu elementów bez dodawania dodatkowego niepotrzebnego kontenera DOM*/}
+        <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} userRole={userRole} setUserRole={setUserRole}/>
         <div className="pageContainer">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -37,16 +39,24 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<LoginPage setLoggedIn={setLoggedIn} />} />
-            <Route path="/register" element={<Registration />} />
+              {!isLoggedIn && (
+                  <Route path="/register" element={<Registration />} />
+              )}
             <Route path="/animal/:id" element={<Animal />} />
-            <Route path="/adoption-form/:id" element={<AdoptionForm />} />
-            <Route path="/administration-page" element={<AdministrationPage />} />
-            <Route path="/add-animal" element={<CreateAnimal />} />
-            <Route path="/delete-animal" element={<DeleteAnimal />} />
-            <Route path="/edit-animal" element={<EditAnimal />} />
-            <Route path="/edit-about" element={<EditAboutUs/>} />
-            <Route path="/edit-voluntary" element={<EditVoluntary/>} />
-            <Route path="/edit-contact" element={<EditContact/>} />
+              {isLoggedIn && (
+                  <Route path="/adoption-form/:id" element={<AdoptionForm />} />
+              )}
+              {isLoggedIn && userRole === 'ADMIN' && (
+                  <>
+                      <Route path="/administration-page" element={<AdministrationPage />} />
+                      <Route path="/add-animal" element={<CreateAnimal />} />
+                      <Route path="/delete-animal" element={<DeleteAnimal />} />
+                      <Route path="/edit-animal" element={<EditAnimal />} />
+                      <Route path="/edit-about" element={<EditAboutUs/>} />
+                      <Route path="/edit-voluntary" element={<EditVoluntary/>} />
+                      <Route path="/edit-contact" element={<EditContact/>} />
+                  </>
+              )}
             <Route path="/voluntary" element={<Voluntary/>} />
           </Routes>
         </div>

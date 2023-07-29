@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Link , useMatch, useResolvedPath } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
-export default function Navbar({isLoggedIn, setLoggedIn}) {
-
-    const [userRole, setUserRole] = useState('');
+export default function Navbar({isLoggedIn, setLoggedIn, userRole, setUserRole}) {
 
     useEffect(() => {
         //https://www.npmjs.com/package/jwt-decode
-        const token = localStorage.getItem("token").replace('Bearer ', '');
-        const decodedToken = jwt_decode(token);
-        const role = decodedToken.authorities[0].authority;
-        setUserRole(role);
-        console.log("token --> " + token)
-        console.log("decoded token --> " + JSON.stringify(decodedToken))
-        console.log("Role: ", role);
+        if (isLoggedIn === true) {
+            const token = localStorage.getItem("token").replace('Bearer ', '');
+            const decodedToken = jwt_decode(token);
+            const role = decodedToken.authorities[0].authority;
+            setUserRole(role);
+            console.log("Navbar Role: ", role);
+            console.log("Navbar Logged in? --> " + isLoggedIn)
+        }
+
     }, [isLoggedIn]);
 
     const handleLogout = async () => {
@@ -29,6 +29,8 @@ export default function Navbar({isLoggedIn, setLoggedIn}) {
             });
 
             setLoggedIn(false);
+            localStorage.removeItem("token");
+            console.log("Navbar logout Logged in? --> " + isLoggedIn)
         } catch (error) {
             console.error('Błąd wylogowywania:', error);
         }
@@ -39,7 +41,7 @@ export default function Navbar({isLoggedIn, setLoggedIn}) {
         <Link to="/" className="site-title">Schronisko</Link>
         <ul>
             <div className="administration-nav-bar">
-                {userRole === "ADMIN" &&
+                {userRole === "ADMIN" && isLoggedIn === true &&
                     (<CustomLink to="/administration-page">Administracja</CustomLink>)
                 }
             </div>
