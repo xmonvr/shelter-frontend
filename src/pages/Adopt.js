@@ -83,7 +83,7 @@ function AnimalList() {     //komponent
     const getImageByAnimalId = async (animalId) => {
 
         try {
-            const url = `http://localhost:8081/files/get-image-by-animalId?animalId=${animalId}`;
+            const url = `http://localhost:8081/images/get-image-by-animalId?animalId=${animalId}`;
             const response = await fetch(url);
             console.log("id --> " + animalId);
             if (response.ok) {

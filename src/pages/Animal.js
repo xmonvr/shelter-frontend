@@ -33,7 +33,7 @@ export default function Animal() {
     const getImageByAnimalId = async () => {
 
         try {
-            const url = `http://localhost:8081/files/get-image-by-animalId?animalId=${id}`;
+            const url = `http://localhost:8081/images/get-image-by-animalId?animalId=${id}`;
             const response = await fetch(url);
             console.log("id --> " + id);
             if (response.ok) {
