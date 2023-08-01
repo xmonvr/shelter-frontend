@@ -13,8 +13,8 @@
     padding: 2rem;
     height: 82vh;
     width: 190vh;
+    overflow: auto;
 }
-
 
 .header-about {
     color: var(--dark);
