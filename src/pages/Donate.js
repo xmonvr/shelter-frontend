@@ -17,7 +17,7 @@ export default function Donate() {
             setPaymentDescription(`Darowizna na zwierze id ${id}`);
             console.log("Darowizna na zwierze id" + paymentDescription);
             data = {
-                description: paymentDescription,
+                description: formData.get("description"),
                 buyerEmail: formData.get("buyerEmail"),
                 buyerFirstName: formData.get("buyerFirstName"),
                 buyerLastName: formData.get("buyerLastName"),
@@ -30,7 +30,7 @@ export default function Donate() {
             id = 0;
             data =
                 {
-                    description: paymentDescription,
+                    description: formData.get("description"),
                     buyerEmail: formData.get("buyerEmail"),
                     buyerFirstName: formData.get("buyerFirstName"),
                     buyerLastName: formData.get("buyerLastName"),
