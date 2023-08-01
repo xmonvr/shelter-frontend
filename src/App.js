@@ -35,7 +35,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/adopt" element={<Adopt />} />
-            <Route path="/donate" element={<Donate />} />
+            <Route path="/donate/:id" element={<Donate />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<LoginPage setLoggedIn={setLoggedIn} />} />

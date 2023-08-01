@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 
 export default function Navbar({isLoggedIn, setLoggedIn, userRole, setUserRole}) {
 
+    let id = 0;
     useEffect(() => {
         //https://www.npmjs.com/package/jwt-decode
         if (isLoggedIn === true) {
@@ -14,7 +15,6 @@ export default function Navbar({isLoggedIn, setLoggedIn, userRole, setUserRole})
             console.log("Navbar Role: ", role);
             console.log("Navbar Logged in? --> " + isLoggedIn)
         }
-
     }, [isLoggedIn]);
 
     const handleLogout = async () => {
@@ -47,7 +47,7 @@ export default function Navbar({isLoggedIn, setLoggedIn, userRole, setUserRole})
             </div>
 
             <CustomLink to="/adopt">Zaadoptuj</CustomLink>
-            <CustomLink to="/donate">Wesprzyj</CustomLink>
+            <CustomLink to={`/donate/${id}`}>Wesprzyj</CustomLink>
             <CustomLink to="/contact">Kontakt</CustomLink>
             <CustomLink to="/about">O nas</CustomLink>
             {isLoggedIn ? (

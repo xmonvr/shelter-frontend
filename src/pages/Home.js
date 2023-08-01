@@ -2,10 +2,12 @@ import './Home.css';
 import { Link } from "react-router-dom";
 
 export default function Home() {
+    let id = 0;
     return (
         <div className="home-page">
             <div className="central-bar">
-                <p>Wesprzyj/cytat o zwierzętach ze schroniska/przesuwane różne informacje</p>
+                <img src="photo/home.jpg" alt="animal"/>
+                {/*<p>Wesprzyj/cytat o zwierzętach ze schroniska/przesuwane różne informacje</p>*/}
             </div>
             <div className='container'>
                 <Link to="/adopt?type=DOG" className="adopt-a-dog">
@@ -14,7 +16,7 @@ export default function Home() {
                 <Link to="/adopt?type=CAT" className="adopt-a-cat">
                     <p>Adoptuj kota</p>
                 </Link>
-                <Link to="/donate" className="support">
+                <Link to={`/donate/${id}`} className="support">
                     <p>Wesprzyj nas</p>
                 </Link>
                 <Link to="/voluntary" className="voluntary">

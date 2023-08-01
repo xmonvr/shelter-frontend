@@ -59,7 +59,7 @@ export default function Animal() {
 
     useEffect(() => {
         getAnimalById();
-        getImageByAnimalId()
+        getImageByAnimalId();
     }, []);
 
     return (
@@ -74,17 +74,13 @@ export default function Animal() {
                     <p>Płeć: {animalInfo.gender}</p>
                     <p>Wiek: {animalInfo.age}</p>
                     <p>Id: {animalInfo.id}</p>
-                    <p>Opis: {animalInfo.name} jest młodym ?? o takim i takim charakterze. Uwielbia inne zwierzęta, jest przyjazny. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur,
-                    debitis dolor dolorum eligendi eos est fuga id, iste laborum libero magnam nam numquam quasi quia sequi, ullam voluptates! Accusantium, blanditiis doloribus hic illo
-                    tenetur voluptatum? Consequatur ipsa, obcaecati. Animi cumque, enim est et eveniet explicabo facere facilis ipsa iste itaque iusto nam natus necessitatibus nemo
-                    nostrum obcaecati porro quae, quisquam quos saepe sequi sint veritatis? Ad doloremque dolores hic mollitia natus necessitatibus nesciunt nisi officiis? Adipisci animi
-                    doloribus eos illum quia repellendus sit. Adipisci amet consequuntur expedita sequi! Cum, ducimus eos harum ipsum minus quasi rerum tenetur. Dolor, excepturi praesentium?</p>
+                    <p>Opis: {animalInfo.description}</p>
                 </div>
                 <div className="buttons-animal">
                     <Link to={`/adoption-form/${id}`} className="adoption-form-animal">
                         Adoptuj
                     </Link>
-                    <Link to="/donate" className="virtual-adoption-animal">     {/*todo link bedzie zawieral id zwierzecia i tytul przelewu bedzie zawoeral id konkretnego zwierzecia*/}
+                    <Link to={`/donate/${id}`} className="virtual-adoption-animal">
                         Adoptuj wirtualnie
                     </Link>
                 </div>
