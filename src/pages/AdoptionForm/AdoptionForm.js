@@ -1,8 +1,11 @@
 import './AdoptionForm.css'
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {Popup} from "../../Popup";
 
 export default function AdoptionForm() {
+    const [isOpen, setIsOpen] = useState(false);
+
 
     const { id } = useParams();
     const [questionsList, setQuestionsList] = useState([
@@ -80,6 +83,7 @@ export default function AdoptionForm() {
                 if (response.ok) {
 
                 } else {
+                    setIsOpen(true);
                     console.error("Błąd:", response.statusText);
                 }
             } catch (error) {
@@ -100,6 +104,7 @@ export default function AdoptionForm() {
                 if (response.ok) {
 
                 } else {
+                    setIsOpen(true);
                     console.error("Błąd:", response.statusText);
                 }
             } catch (error) {
@@ -194,9 +199,11 @@ export default function AdoptionForm() {
                     </div>
                 </div>
                 <div className="buttons-adoption-form">
-                    <input className="input-send-adoption-form" type="submit" id="submit-send" value="Wyslij zgłoszenie" on/>
+                    <input className="input-send-adoption-form" type="submit" id="submit-send" value="Wyślij zgłoszenie"/>
+                    {isOpen ? <Popup message="Zaloguj się, aby wysłać formularz" close={() => setIsOpen(false)} /> : null}
                     <div className="button-send-adoption-form"></div>
                     <input className="input-download-adoption-form" type="submit" id="submit-download" value="Pobierz zgłoszenie"/>
+                    {isOpen ? <Popup message="Zaloguj się, aby pobrać formularz" close={() => setIsOpen(false)} /> : null}
                     <div className="button-download-adoption-form"></div>
                 </div>
             </form>

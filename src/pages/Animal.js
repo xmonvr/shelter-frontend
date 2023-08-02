@@ -31,12 +31,12 @@ export default function Animal() {
     };
 
     const getImageByAnimalId = async () => {
-
         try {
             const url = `http://localhost:8081/images/get-image-by-animalId?animalId=${id}`;
             const response = await fetch(url);
             console.log("id --> " + id);
             if (response.ok) {
+                //dokumentacja https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch "Supplying your own request object"
                 const image = await response.blob();
                 const imageUrl = URL.createObjectURL(image);
                 setAnimalImage(imageUrl);

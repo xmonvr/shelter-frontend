@@ -1,0 +1,45 @@
+.container-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+}
+
+.box-popup {
+    box-shadow: var(--box-shadow-dark);
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    bottom: 40%;
+    top: 40%;
+    text-align: center;
+    margin: auto;
+    border-radius: 20px;
+    background: var(--white);
+ }
+
+.text-popup {
+    margin-top: 2rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+}
+
+.button-popup {
+    width: 50%;
+    margin-top: 1rem;
+    background-color: var(--orange);
+    color: var(--white);
+    border: none;
+    border-radius: 20px;
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.button-popup:hover {
+    background-color: var(--dark);
+    box-shadow: var(--box-shadow-dark);
+}
