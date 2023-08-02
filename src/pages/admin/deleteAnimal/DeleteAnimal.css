@@ -1,5 +1,6 @@
 .container-delete-animal {
-    background-color: var(--white);
+    background-color: var(--light-beige);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,12 +1,12 @@
 import './Home.css';
 import { Link } from "react-router-dom";
-
+import homeImage from "./photo/home.jpg";
 export default function Home() {
     let id = 0;
     return (
         <div className="home-page">
             <div className="central-bar">
-                <img src="photo/home.jpg" alt="animal"/>
+                <img src={homeImage} alt="animal" className="central-photo"/>
                 {/*<p>Wesprzyj/cytat o zwierzętach ze schroniska/przesuwane różne informacje</p>*/}
             </div>
             <div className='container'>

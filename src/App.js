@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage"
 import {Route, Routes} from "react-router-dom";
 import Registration from './pages/Registration';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Animal from "./pages/Animal";
 import AdoptionForm from "./pages/AdoptionForm/AdoptionForm";
 import AdministrationPage from "./pages/admin/AdministrationPage";
@@ -43,9 +43,9 @@ function App() {
                   <Route path="/register" element={<Registration />} />
               )}
             <Route path="/animal/:id" element={<Animal />} />
-              {isLoggedIn && (
+              {/*{isLoggedIn && (*/}
                   <Route path="/adoption-form/:id" element={<AdoptionForm />} />
-              )}
+              {/*)}*/}
               {isLoggedIn && userRole === 'ADMIN' && (
                   <>
                       <Route path="/administration-page" element={<AdministrationPage />} />

@@ -3,6 +3,8 @@
     padding-bottom: 2rem;
     padding-right: 2rem;
     padding-left: 2rem;
+    background-color: var(--light-beige);
+    height: 100vh;
 }
 
 .animal-filtration-form {

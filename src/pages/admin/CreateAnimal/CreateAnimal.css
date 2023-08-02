@@ -1,9 +1,9 @@
 .container-create-animal {
-    background-color: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 10px; /* dodanie odstępu na górze kontenera równego wysokości top bar */
+    background-color: var(--light-beige);
 }
 
 .form-create-animal {

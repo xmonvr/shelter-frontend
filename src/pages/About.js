@@ -9,7 +9,8 @@ export default function About() {
 
         try {
             const url = `http://localhost:8081/tab/get-about-entry`;
-            const response = await fetch(url);
+            const response = await fetch(url)
+                // .then(response => response.json());
             if (response.ok) {
                 const info = await response.json();
                 setShelterInfo(info);

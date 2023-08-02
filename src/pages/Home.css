@@ -8,30 +8,21 @@
 
 .home-page {
     text-align: center;
-    /* display: flex; */
-    /* flex-wrap: wrap; */
     padding-top: 1rem;
     padding-bottom: 2rem;
-    /* justify-content: space-between; */
-    /* align-items: center; */
-    /* margin: 20px auto; */
+    background-color: var(--light-beige);
 }
 
-.central-bar {
-    /* box: */
+.central-photo {
     width: 90%;
-    max-width: 120rem;
     height: 52vh;
     border-radius: 20px;
     margin: 3rem auto;
     margin-top: 6rem;
     margin-bottom: 1rem;
-    background-color: var(--grey);
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    object-fit: cover;
   }
+
 /* todo poprawic te dwa cosie wedlug tego co zapisalam w notepadzie */
  
 .container {

@@ -6,6 +6,7 @@
     --light-beige: #F2E9E4;
     --box-shadow-light: 0 .5rem 1.5rem rgba(0,0,0, .1);
     --box-shadow-dark: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    --transparent-white: rgba(255, 255, 255, 0.8);
 
     --dark: #2d3142;
     --shadow: #bfc0c0;

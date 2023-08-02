@@ -1,19 +1,22 @@
 .container-about {
+    background-image: url("photo/mesh.jpg");
+    background-size: cover;
     background-color: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 100px;
+    height: 100vh;
 }
 
 .box-about {
-    background-color: var(--white);
     border-radius: 20px;
     box-shadow: var(--box-shadow-light);
     padding: 2rem;
     height: 82vh;
     width: 190vh;
     overflow: auto;
+    background-color: var(--transparent-white);
 }
 
 .header-about {
