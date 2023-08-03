@@ -55,7 +55,6 @@ export default function EditAnimal() {
                 <h2 className="animal-info-header-edit-animal">Dane zwierzaka</h2>
                 <div className="animal-box-edit-animal">
                     <div className="animal-info-edit-animal">
-
                         <div className="id-edit-animal">
                             <label className="label-id-edit-animal" htmlFor="id">Id:</label>
                             <input className="input-id-edit-animal" type="number" id="id" name="id" value={id || null} onChange={(event) => setId(event.target.value)} required/>

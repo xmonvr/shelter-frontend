@@ -71,7 +71,7 @@ export default function AdoptionForm() {
 
         if (event.nativeEvent.submitter.id === "submit-send") {
             try {
-                const response = await fetch(`http://localhost:8081/api/adoptions/send-adoption-form?animalId=${id}`, {
+                const response = await fetch(`http://localhost:8081/adoptions/send-adoption-form?animalId=${id}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -91,7 +91,7 @@ export default function AdoptionForm() {
             }
         } else {
             try {
-                const response = await fetch(`http://localhost:8081/api/adoptions/adoption-form-pdf?animalId=${id}`, {
+                const response = await fetch(`http://localhost:8081/adoptions/adoption-form-pdf?animalId=${id}`, {
 
                     method: "POST",
                     headers: {

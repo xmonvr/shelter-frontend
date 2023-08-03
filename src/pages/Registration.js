@@ -13,7 +13,7 @@ export default function Registration() {
 
         try {                       // fetch(url, [options]);
                                     // + skladnia async / await
-            const response = await fetch("http://localhost:8081/api/registration", {
+            const response = await fetch("http://localhost:8081/registration", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
