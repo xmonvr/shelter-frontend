@@ -16,7 +16,7 @@ export default function CreateAnimal() {
         const token = localStorage.getItem("token")
         event.preventDefault();
         const formData = new FormData();        //form data jest odpowiednie dla dane + obraz
-        formData.append("name", name || "");
+        formData.append("name", name || "");    //Jeśli name jest prawdziwe (nie jest null, undefined itp.), to przypisuje wartość name, w przeciwnym razie przypisuje pusty ciąg znaków "".
         formData.append("typeOfAnimal", typeOfAnimal || "");
         formData.append("chipNumber", chipNumber || "");
         formData.append("gender", gender || "");

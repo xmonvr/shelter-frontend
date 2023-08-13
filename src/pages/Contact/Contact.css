@@ -1,7 +1,6 @@
-.container-about {
-    background-image: url("photo/mesh.jpg");
+.container-contact {
+    background-image: url("../photo/mesh.jpg");
     background-size: cover;
-    background-color: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,22 +8,21 @@
     height: 100vh;
 }
 
-.box-about {
+.box-contact {
+    background-color: var(--transparent-white);
     border-radius: 20px;
     box-shadow: var(--box-shadow-light);
     padding: 2rem;
     height: 82vh;
     width: 190vh;
-    overflow: auto;
-    background-color: var(--transparent-white);
 }
 
-.header-about {
+.header-contact {
     color: var(--dark);
     margin-bottom: 1rem;
 }
 
-.info-about {
+.info-contact {
     display: inline-flex;
     margin-right: 10px;
     width: 100%;

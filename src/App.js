@@ -1,14 +1,14 @@
 import './App.css';
 import Navbar from "./Components/Navbar";
-import Adopt from "./pages/Adopt";
-import Donate from "./pages/Donate";
-import About from "./pages/About";
-import Home from "./pages/Home";
-import LoginPage from "./pages/LoginPage"
+import Adopt from "./pages/Adopt/Adopt";
+import Donate from "./pages/Donate/Donate";
+import About from "./pages/About/About";
+import Home from "./pages/Home/Home";
+import LoginPage from "./pages/Login/LoginPage"
 import {Route, Routes} from "react-router-dom";
-import Registration from './pages/Registration';
+import Registration from './pages/Registration/Registration';
 import React, { useState } from 'react';
-import Animal from "./pages/Animal";
+import Animal from "./pages/Animal/Animal";
 import AdoptionForm from "./pages/AdoptionForm/AdoptionForm";
 import AdministrationPage from "./pages/admin/AdministrationPage";
 import CreateAnimal from "./pages/admin/CreateAnimal/CreateAnimal";
@@ -16,8 +16,8 @@ import DeleteAnimal from "./pages/admin/deleteAnimal/DeleteAnimal";
 import EditAnimal from "./pages/admin/editAnimal/EditAnimal";
 import EditAboutUs from "./pages/admin/editAboutUs/EditAboutUs";
 import EditVoluntary from "./pages/admin/editVoluntary/EditVoluntary";
-import Contact from "./pages/Contact";
-import Voluntary from "./pages/Voluntary";
+import Contact from "./pages/Contact/Contact";
+import Voluntary from "./pages/Voluntary/Voluntary";
 import EditContact from "./pages/admin/editContact/EditContact";
 
 

@@ -1,6 +1,6 @@
 import './LoginPage.css';
 import {Link, useNavigate} from "react-router-dom";
-import {Popup} from "../Popup";
+import {Popup} from "../../Popup";
 import {useState} from "react";
 
 export default function LoginPage({setLoggedIn}) {
