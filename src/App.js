@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import {Router} from "./Components/Router";
 import axios from "axios";
 import {BASE_URL} from "./api/endpoints";
+import {AuthContextProvider} from "./auth/AuthContext";
 
 axios.defaults.baseURL = BASE_URL;
 function App() {
@@ -14,12 +15,12 @@ function App() {
         setIsLoggedIn(value);
     };
   return (
-      <>         {/*(<> ... </>) to specjalny rodzaj komponentu, który pozwala na zgrupowanie wielu elementów bez dodawania dodatkowego niepotrzebnego kontenera DOM*/}
+      <AuthContextProvider>         {/*(<> ... </>) to specjalny rodzaj komponentu, który pozwala na zgrupowanie wielu elementów bez dodawania dodatkowego niepotrzebnego kontenera DOM*/}
         <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} userRole={userRole} setUserRole={setUserRole}/>
         <div className="pageContainer">
             <Router/>
         </div>
-      </>
+      </AuthContextProvider>
   )
 }
 export default App;

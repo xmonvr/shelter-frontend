@@ -15,5 +15,7 @@ export const ENDPOINTS = {    //obiekt
     deleteAnimal: "/animal/delete-animal",
     editAnimal: "/animal/edit-animal",
     editContact: "/tab/add-contact-entry",
+    sendAdoptionForm: "/adoptions/send-adoption-form",
+    adoptionFormPdf: "/adoptions/adoption-form-pdf"
 };
 // ENDPOINTS.about - referancja ado pola ktore trzyma dana wartosc

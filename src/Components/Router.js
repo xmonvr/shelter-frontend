@@ -4,7 +4,6 @@ import Adopt from "../pages/Adopt/Adopt";
 import Donate from "../pages/Donate/Donate";
 import Contact from "../pages/Contact/Contact";
 import {About} from "../pages/About/About";
-import LoginPage from "../pages/Login/LoginPage";
 import Registration from "../pages/Registration/Registration";
 import Animal from "../pages/Animal/Animal";
 import AdoptionForm from "../pages/AdoptionForm/AdoptionForm";
@@ -17,6 +16,7 @@ import EditVoluntary from "../pages/admin/editVoluntary/EditVoluntary";
 import EditContact from "../pages/admin/editContact/EditContact";
 import Voluntary from "../pages/Voluntary/Voluntary";
 import {useAuth} from "../auth/auth";
+import {LoginPage} from "../pages/Login/LoginPage";
 
 export function Router() {
     const {user} = useAuth();

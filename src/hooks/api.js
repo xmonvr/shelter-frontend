@@ -1,6 +1,7 @@
 import {useState, useEffect, useCallback, useMemo} from "react";
 import axios from "axios";
 import {useAuth} from "../auth/auth";
+import {useLocalStorage} from "./useLocalStorage";
 
 export const useAxiosGet = ({ url, params = {}, headers = {} }) => {
     const [response, setResponse] = useState(null);
@@ -33,12 +34,15 @@ export const useAxiosGet = ({ url, params = {}, headers = {} }) => {
     return { response, error, fetchData };
 };
 
-export const useAxiosMutate = ({ method, url, body, contentType }) => {
-    const {token} = useAuth();
-    const mutate = () => {
-        axios[method](
+export const useAxiosMutate = (method) => {
+    const {getItem} = useLocalStorage();
+    return async ({ url, body, contentType = "application/json" }) => {
+        const token = getItem("token");
+        console.log("token " + token);
+
+        await axios[method](
             url,
-            { body: body },
+            { ...body },
             {
                 headers: {
                     Authorization: token,
@@ -46,9 +50,7 @@ export const useAxiosMutate = ({ method, url, body, contentType }) => {
                 },
             }
         )
-            .then(() => alert("Operacja wykonana!"))
-            .catch((e) => alert(`Wystąpił nieoczekiwany błąd - ${e.message}`));
     };
 
-    return { mutate };
+    // return { mutate };
 };

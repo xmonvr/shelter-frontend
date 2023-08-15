@@ -16,9 +16,9 @@ export default function Navbar() {
         <Link to="/" className="site-title">Schronisko</Link>
         <ul>
             <div className="administration-nav-bar">
-                { user && user.role === "ADMIN" &&
-                    (<CustomLink to="/administration-page">Administracja</CustomLink>)
-                }
+                {user && user.role === "ADMIN" && (
+                    <CustomLink to="/administration-page">Administracja</CustomLink>
+                )}
             </div>
 
             <CustomLink to="/adopt">Zaadoptuj</CustomLink>

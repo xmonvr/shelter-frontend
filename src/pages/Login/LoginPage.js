@@ -1,11 +1,13 @@
-import './LoginPage.css';
-import {Link, useNavigate} from "react-router-dom";
+import "./LoginPage.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../../auth/auth";
 import {Popup} from "../../Popup";
-import {useState} from "react";
 
-export default function LoginPage({setLoggedIn}) {
-    const navigate = useNavigate();
+export function LoginPage() {
     const [isOpen, setIsOpen] = useState(false);
+    const {login} = useAuth();
+    const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -19,15 +21,14 @@ export default function LoginPage({setLoggedIn}) {
             const response = await fetch("http://localhost:8081/user/login", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
             });
 
             if (response.ok) {
                 const token = response.headers.get("Authorization");
-                localStorage.setItem("token", token);
-                setLoggedIn(true);
+                token && login(token);
                 navigate("/");
             } else {
                 setIsOpen(true);
@@ -36,7 +37,7 @@ export default function LoginPage({setLoggedIn}) {
         } catch (error) {
             console.error("Błąd podczas komunikacji z serwerem:", error);
         }
-    }
+    };
 
     return (
         <div className="login-page">
@@ -47,15 +48,12 @@ export default function LoginPage({setLoggedIn}) {
                 <label className="label-password-login" for="password">Hasło:</label>
                 <input className="input-password-login" type="password" id="password" name="password" required />
                 <input className="input-submit-login" type="submit" value="Zaloguj się" />
-                {isOpen ? <Popup message="Nieprawidłowy login lub hasło" close={() => setIsOpen(false)} /> : null}
+                {isOpen ? (<Popup message="Nieprawidłowy login lub hasło" close={() => setIsOpen(false)} />) : null}
                 <div className="register-button-login">
-                <pre>Nie masz konta? Zarejestruj się </pre>
-                <Link to="/register" >
-                    tutaj.
-                </Link>
-            </div>
+                    <pre>Nie masz konta? Zarejestruj się </pre>
+                    <Link to="/register">tutaj.</Link>
+                </div>
             </form>
-            
         </div>
-    )
+    );
 }

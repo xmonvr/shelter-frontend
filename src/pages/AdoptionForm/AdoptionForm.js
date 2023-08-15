@@ -1,38 +1,22 @@
 import './AdoptionForm.css'
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Popup} from "../../Popup";
+import {questionsList} from "./questions";
+import {useAxiosMutate} from "../../hooks/api";
+import {ENDPOINTS} from "../../api/endpoints";
 
 export default function AdoptionForm() {
-    const [isOpen, setIsOpen] = useState(false);
-
-
+    const [isOpen, setIsOpen] = useState(false)
     const { id } = useParams();
-    const [questionsList, setQuestionsList] = useState([
-        "Czemu zdecydował/a się Pan/i na akurat to zwierzę?",
-        "Jaki jest metarz mieszkania/domu, w którym zamieszka zwierzę?",
-        "Ile osób zamieszkuje mieszkanie/dom?",
-        "Czy mieszkanie/dom zamieszkują dzieci? Jeśli tak, prosze podać wiek.",
-        "Czy mieszkanie/dom zamieszkują inne zwierzęta? Jeśli tak proszę podać jakie zwierzęta",
-        "Czy któryś z mieszkańców ma uczulenie na sierść lub ślinę?",
-        "Czy posiada Pan/Pani podwórko? Jeśli tak, proszę podać metrarz.",
-        "Czy reszta mieszkańców posiadłości wie o adopcji? Czy wyrażają na nią zgodę?",
-        "Co zrobi Pan/i z zwierzęciem podczas dłuższej nieobecności wszystkich dorosłych mieszkańców? (np. wakacje, delegacja, wyjazd na weekend itd.)",
-        "Jak często zwierzę będzie wychodziło na spacery?",
-        "Czy zwierzę będzie zostawało samo w domu? Na ile godzin dziennie średnio?",
-        "Gdzie będzie przebywało zwierzę podczas krótkiej (np. wyjście do pracy) nieobecności domowników? (proszę wziąć pod uwagę, że \"samo w mieszkaniu\" nie jest niepoprawną odpowiedzią)",
-        "Czy przygotowałeś już miejsce dla zwierzaka? W zależności od zwierzaka - np. kojec na podwórku/ buda/ legowisko/ terrarium" +
-        "miska itd. Opisz to, co przygotowałeś na przybycie zwierzaka" ,
-        "Gdzie i jak zwierzę będzie spędzało swój czas." +
-        "Opisz np. gdzie zwierzę będzie spało, gdzie będzie spędzało swój dzień?",
-        "Czy bierzesz na siebie odpowiedzialność za utrzymanie zwierzaka." +
-        "W te koszty wchodzą m.in.: obowiązkowe szczepienia co roku u weterynarza, zakup odpowiedniej karmy," +
-        "wymiana zużytych zwierzęcych akcesoriów (np. buda, legowisko, smycz)",
-        "Jak zamierzasz zabezpieczyć zwierzę przed kleszczami i pchłami?"
-    ]);
+
+    const submitForm = useAxiosMutate("post");
+    const  submitPdf = useAxiosMutate("post");
 
     const handleSubmit = async (event) => {
-        const token = localStorage.getItem("token")
+        const urlSend = `${ENDPOINTS.sendAdoptionForm}?animalId=${id}`;
+        const urlPdf = `${ENDPOINTS.adoptionFormPdf}?animalId=${id}`;
+
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
@@ -52,14 +36,6 @@ export default function AdoptionForm() {
                     },
                     dateOfBirth: formData.get("date-of-birth")
                 },
-                animal: {
-                    name: formData.get("name"),
-                    typeOfAnimal: formData.get("type-of-animal"),
-                    chip_number: formData.get("chip-number"),
-                    gender: formData.get("gender"),
-                    isVaccinated: formData.get("vaccinated"),
-                    age: formData.get("age")
-                },
                 questions: {
                 }
             };
@@ -70,46 +46,13 @@ export default function AdoptionForm() {
         console.log("question list 1" + questionsList);
 
         if (event.nativeEvent.submitter.id === "submit-send") {
-            try {
-                const response = await fetch(`http://localhost:8081/adoptions/send-adoption-form?animalId=${id}`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": token
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-
-                } else {
-                    setIsOpen(true);
-                    console.error("Błąd:", response.statusText);
-                }
-            } catch (error) {
-                console.error("Błąd:", error);
-            }
+            await submitForm({method: "POST", url: urlSend, body: data})
+                .then(() => alert("Operacja wykonana"))
+                .catch(() => setIsOpen(true));
         } else {
-            try {
-                const response = await fetch(`http://localhost:8081/adoptions/adoption-form-pdf?animalId=${id}`, {
-
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": token
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-
-                } else {
-                    setIsOpen(true);
-                    console.error("Błąd:", response.statusText);
-                }
-            } catch (error) {
-                console.error("Błąd:", error);
-            }
+            await submitPdf({method: "POST", url: urlPdf, body: data})
+                .then(() => alert("Operacja wykonana"))
+                .catch(() => setIsOpen(true));
         }
     }
 
