@@ -1,37 +1,26 @@
 import './EditContact.css';
+import {ENDPOINTS} from "../../../api/endpoints";
+import axios from "axios";
 
 export default function EditContact() {
-
-    const handleEditContact = async (event) => {
+    const handleEditContact = (event) => {
         const token = localStorage.getItem("token");
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-
-        try {
-            const url =  `http://localhost:8081/tab/add-contact-entry`;
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": token
-                },
-                body: JSON.stringify(data)
-            });
-            console.log("data --> " + data)
-            console.log("url --> " + url)
-
-
-            if (response.ok) {
-
-            } else {
-                console.error("Błąd:", response.statusText);
+        const url =  ENDPOINTS.editContact;
+        const response = axios.post(url, data, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
             }
-        } catch (error) {
-            console.error("Błąd:", error);
+            });
+
+            if (!response.ok) {
+                return <p>Błąd podczas komunikacji z serwerem.</p>;
+            }
         }
-    }
 
     return (
         <div className="container-edit-contact">

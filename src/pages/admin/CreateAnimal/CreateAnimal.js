@@ -35,7 +35,6 @@ export default function CreateAnimal() {
                     Authorization: token,
                 }
             });
-            console.log("url --> " + url)
 
             if (!response.ok) {
                 return <p>Błąd podczas komunikacji z serwerem.</p>;
