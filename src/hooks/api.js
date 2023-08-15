@@ -1,15 +1,17 @@
-import { useState, useEffect, useCallback } from "react";
+import {useState, useEffect, useCallback, useMemo} from "react";
 import axios from "axios";
 import {useAuth} from "../auth/auth";
 
-export const useAxiosGet = ({ url, params = null, headers = null }) => {
+export const useAxiosGet = ({ url, params = {}, headers = {} }) => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState("");
-    const [loading, setloading] = useState(true);
+
+    const memoizedParams = useMemo(() => params, []);   //raz sie wykonuje i zapamietuje, nie bedzie petli
+    const memoizedHeaders = useMemo(() => headers, []);
 
     const fetchData = useCallback(() => {
         axios
-            .get(url, { params: { ...params } }, JSON.parse(headers))
+            .get(url, { params: { ...memoizedParams } }, {headers: {...memoizedHeaders}})
             .then((res) => {
                 if (Array.isArray(res.data)) {
                     setResponse([...res.data]);
@@ -21,17 +23,14 @@ export const useAxiosGet = ({ url, params = null, headers = null }) => {
             })
             .catch((err) => {
                 setError(err);
-            })
-            .finally(() => {
-                setloading(false);
             });
-    }, [params]);
+    }, [url, memoizedParams, memoizedHeaders]);      //jezeli cos z tego sie zmieni, to wykonaj jeszcze raz
 
     useEffect(() => {
         fetchData();
     }, [fetchData]);
 
-    return { response, error, loading, fetchData };
+    return { response, error, fetchData };
 };
 
 export const useAxiosMutate = ({ method, url, body, contentType }) => {
