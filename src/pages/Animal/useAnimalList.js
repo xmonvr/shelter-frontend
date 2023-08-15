@@ -5,7 +5,7 @@ export const useAnimalList = (searchParams) => {
     const {
         response: animalsListData,
         error,
-        fetchData: refetchAnimalList,
+        fetchData: refetchAnimalList,       //tutaj jest fetch data, bo to moze sie zmienic
     } = useAxiosGet({
         url: ENDPOINTS.filteredAnimals,
         params: { ...searchParams },

@@ -14,6 +14,7 @@ export const ENDPOINTS = {    //obiekt
     createAnimal: "/animal/add-animal",
     deleteAnimal: "/animal/delete-animal",
     editAnimal: "/animal/edit-animal",
+    contact: "/tab/get-contact-entry",
     editContact: "/tab/add-contact-entry",
     sendAdoptionForm: "/adoptions/send-adoption-form",
     adoptionFormPdf: "/adoptions/adoption-form-pdf"
