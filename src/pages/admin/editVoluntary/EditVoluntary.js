@@ -1,41 +1,34 @@
 import './EditVoluntary.css';
+import {useLocalStorage} from "../../../hooks/useLocalStorage";
+import axios from "axios";
+import {ENDPOINTS} from "../../../api/endpoints";
 
 export default function EditVoluntary() {
 
-    const handleEditAboutUs = async (event) => {
-        const token = localStorage.getItem("token")
+    const {getItem} = useLocalStorage();
+    const handleEditVoluntary = async (event) => {
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-
-        try {
-            const url =  `http://localhost:8081/tab/add-volunteering-entry`;
-            const response = await fetch(url, {
-                method: "POST",
+        const token = getItem("token");
+        console.log("token " + token);
+        const url = ENDPOINTS.editVoluntery;
+        const response = await axios.post(url, data,
+            {
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": token
-                },
-                body: JSON.stringify(data)
-            });
-            console.log("data --> " + data)
-            console.log("url --> " + url)
-
-
-            if (response.ok) {
-
-            } else {
-                console.error("Błąd:", response.statusText);
-            }
-        } catch (error) {
-            console.error("Błąd:", error);
+                        Authorization: token,
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+        if (!response.ok) {
+            return <p>Błąd podczas komunikacji z serwerem.</p>;
         }
     }
-
     return (
         <div className="container-edit-voluntary">
-            <form className="form-edit-voluntary" onSubmit={handleEditAboutUs}>
+            <form className="form-edit-voluntary" onSubmit={handleEditVoluntary}>
                 <h2 className="header-edit-voluntary">Edytuj zakładkę "Wolontariat"</h2>
                 <div className="box-edit-voluntary">
                     <div className="edit-voluntary">
