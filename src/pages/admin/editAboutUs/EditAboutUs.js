@@ -1,35 +1,27 @@
 import './EditAboutUs.css';
+import {ENDPOINTS} from "../../../api/endpoints";
+import axios from "axios";
+import {useLocalStorage} from "../../../hooks/useLocalStorage";
 
 export default function EditAboutUs() {
 
+    const {getItem} = useLocalStorage();
+
     const handleEditAboutUs = async (event) => {
-        const token = localStorage.getItem("token")
+        const token = getItem("token");
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-
-        try {
-            const url =  `http://localhost:8081/tab/add-about-entry`;
-            const response = await fetch(url, {
-                method: "POST",
+        const url =  ENDPOINTS.editAbout;
+        const response = await axios.post(url, data,{
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": token
-                },
-                body: JSON.stringify(data)
-            });
-            console.log("data --> " + data)
-            console.log("url --> " + url)
-
-
-            if (response.ok) {
-
-            } else {
-                console.error("Błąd:", response.statusText);
-            }
-        } catch (error) {
-            console.error("Błąd:", error);
+                "Authorization": token,
+                "Content-Type": "application/json",
+            },
+        });
+        if (!response.ok) {
+            return <p>Błąd podczas komunikacji z serwerem.}</p>;
         }
     }
 
