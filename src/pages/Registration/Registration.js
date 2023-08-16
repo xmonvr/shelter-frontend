@@ -1,35 +1,27 @@
 import './Registration.css'
 import {useNavigate} from 'react-router-dom'
+import {ENDPOINTS} from "../../api/endpoints";
+import axios from "axios";
 
 export default function Registration() {
 
     const navigate = useNavigate();
 
     const handleRegistration = async (event) => {
+        const url = ENDPOINTS.registration;
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-
-        try {                       // fetch(url, [options]);
-                                    // + skladnia async / await
-            const response = await fetch("http://localhost:8081/registration", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            });
-
-            if (response.ok) {
-                navigate("/login");
-            } else {
-                console.error("Błąd podczas rejestracji:", response.statusText);
-            }
-        } catch (error) {
-            console.error("Błąd podczas komunikacji z serwerem:", error);
-        }
+        await axios.post(url, data, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(() => {
+            navigate("/login");
+        }).catch(() => <p>Błąd podczas komunikacji z serwerem.</p>);
     }
+
     return (
         <div className="registration-page">
             <form className="registration-form" onSubmit={handleRegistration}>

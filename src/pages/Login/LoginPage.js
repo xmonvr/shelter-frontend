@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../auth/auth";
 import {Popup} from "../../Popup";
+import axios from "axios";
+import {ENDPOINTS} from "../../api/endpoints";
 
 export function LoginPage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,32 +12,25 @@ export function LoginPage() {
     const navigate = useNavigate();
 
     const handleLogin = async (event) => {
+        const url = ENDPOINTS.login;
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        // Hook useHistory z react-router do obsługi historii przeglądarki
 
-        try {                       // fetch(url, [options]);
-            // + skladnia async / await
-            const response = await fetch("http://localhost:8081/user/login", {
-                method: "POST",
+        try {
+            const response = await axios.post(url, data, {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(data),
             });
-
-            if (response.ok) {
-                const token = response.headers.get("Authorization");
-                token && login(token);
-                navigate("/");
-            } else {
-                setIsOpen(true);
-                console.error("Błąd podczas rejestracji:", response.statusText);
-            }
+            //pobranie tokena z odpowiedzi logowania
+            const token = response.headers.get("Authorization");
+            // jesli token nie jest null/undefined/false, to wywolaj funkcje login() z useAuth i przekaz token z headera
+            token && login(token);
+            navigate("/");
         } catch (error) {
-            console.error("Błąd podczas komunikacji z serwerem:", error);
+            setIsOpen(true);
         }
     };
 
