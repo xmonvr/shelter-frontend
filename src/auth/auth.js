@@ -4,27 +4,19 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { AuthContext } from "../auth/AuthContext";
 
 export const useAuth = () => {
-  const { user, token, setUser, setToken } = useContext(AuthContext);   //destrukturyzacja
+  const { user, setUser, setToken } = useContext(AuthContext);    // destrukturyzacja
   const { getItem, removeItem, setItem } = useLocalStorage();
 
   //wczytanie tokena oraz informacje o zalogowanym userze po przeladowaniu strony
   useEffect(() => {
-    if (!token) return;
     const userToken = getItem("token");
-    console.log(userToken);
-    setToken(userToken);
-    // ?? koercja
-    const fixedUserToken = userToken ?? userToken.replace("Bearer ", "");
-    const decodedUserToken = jwt_decode(fixedUserToken);
-    if (decodedUserToken) {
-      setUser({
-        role: decodedUserToken.authorities[0].authority,
-      });
-    }
+
+    if (!userToken) return;
+
+    login(userToken);
   }, []);
 
   const login = (token) => {
-    console.log(token);
     const fixedUserToken = token && token.replace("Bearer ", "");
     const decodedUserToken = jwt_decode(fixedUserToken);
 
@@ -43,9 +35,7 @@ export const useAuth = () => {
   const logout = () => {
     //czyszczenie stanu contextu
     setUser(null);
-    setToken(null);
     removeItem("token");
-    removeItem("user");
   };
 
   return { user, login, logout };
