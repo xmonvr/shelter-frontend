@@ -26,7 +26,7 @@ export default function Navbar() {
             <CustomLink to="/contact">Kontakt</CustomLink>
             <CustomLink to="/about">O nas</CustomLink>
             {user ? (
-                <button onClick={handleLogout}>Wyloguj</button>
+                <button className="logout" onClick={handleLogout}>Wyloguj</button>
             ) : (
                 <CustomLink to="/login">Zaloguj</CustomLink>
             )}

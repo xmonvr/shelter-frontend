@@ -1,6 +1,5 @@
 import "./About.css";
-
-import { useAbout } from "./useAbout";
+import {useAbout} from "./useAbout";
 
 export function About() {
     // const [shelterInfo, setShelterInfo] = useState("");
@@ -26,7 +25,7 @@ export function About() {
     //   getAbout();
     // }, []);
 
-    const { aboutData, error } = useAbout();
+    const {aboutData, error} = useAbout();
 
     if (error) {
         return <p>Błąd podczas komunikacji z serwerem: {error}</p>;

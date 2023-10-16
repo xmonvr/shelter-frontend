@@ -1,6 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
 import {Link, useLocation} from "react-router-dom";
-import {useAnimalList} from "./useAnimalList";
 import axios from "axios";
 import {ENDPOINTS} from "../../api/endpoints";
 
@@ -10,6 +9,7 @@ export function AnimalList() {
     const [gender, setGender] = useState("");
     const [typeOfAnimal, setTypeOfAnimal] = useState("");
     const [animalImages, setAnimalImages] = useState({});
+    const [animalsList, setAnimalList] = useState([]);
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const typeFilter = queryParams.get("type");
@@ -43,45 +43,72 @@ export function AnimalList() {
         return data;
     }, [ageMax, ageMin, gender, typeFilter, typeOfAnimal]);
 
-    const { animalsListData, error, refetchAnimalList } =
-        useAnimalList(getFilters);
 
-    useEffect(() => {
-
-        if (animalsListData && animalsListData.length > 0) {
-            animalsListData.forEach((animal) => {
-                getImageByAnimalId(animal.id);
-            });
-        }
-    }, [animalsListData]);
-
-    const getImageByAnimalId = async (animalId) => {
+    const getAnimalList = async () => {
         try {
-            const url = ENDPOINTS.animalImage + `?animalId=${animalId}`;
-            const response = await axios.get(url,/*{params: {animalId: animalId}}*/); //params - klucz
-            console.log("id --> " + animalId);
-            if (response.ok) {
-                const image = await response.data.blob();
-                const imageUrl = URL.createObjectURL(image);
-                // aktualizujemy stan animalImages o nowy URL zdjęcia dla danego identyfikatora zwierzęcia
-                setAnimalImages((prevAnimalImages) => ({
-                    ...prevAnimalImages,
-                    [animalId]: imageUrl,
-                }));
-            } else {
-                console.error(
-                    "Błąd podczas pobierania obrazu zwierzaka: ",
+            const url = ENDPOINTS.filteredAnimals + `?ageMin=${getFilters.ageMin}&ageMax=${getFilters.ageMax}&gender=${getFilters.gender}&typeOfAnimal=${getFilters.typeOfAnimal}`;
+            const response = await axios.get(url); //params - klucz
+            if (!response.data) {
+                return console.error(
+                    "Błąd podczas pobierania pobierania listy zwierzat: ",
                     response.statusText
                 );
             }
-        } catch (error) {
+            setAnimalList(response.data);
+        } catch(error) {
             console.error("Błąd podczas komunikacji z serwerem: ", error);
         }
     };
 
-    if (error) {
-        return <p>Wystąpił błąd komunikacji z serwerem: {error}</p>;
-    }
+    useEffect(() => {
+        if (animalsList && animalsList.length > 0) {
+            animalsList.forEach((animal) => {
+                getImageByAnimalId(animal.id);
+            });
+        }
+    }, [animalsList]);
+
+    /*const getImageByAnimalId = async (animalId) => {
+        try {
+            const url = ENDPOINTS.animalImage + `?animalId=${animalId}`;
+            const response = await axios.get(url);
+            console.log("id --> " + animalId);
+            const image = response.data.blob(); //Binary Large Object
+            const imageUrl = URL.createObjectURL(image);
+            // aktualizujemy stan animalImages o nowy URL zdjęcia dla danego identyfikatora zwierzęcia
+            setAnimalImages(imageUrl);
+        } catch (error) {
+            console.error("Błąd podczas komunikacji z serwerem: ", error);
+        }
+    };*/
+
+    const getImageByAnimalId = async (animalId) => {
+        try {
+            const url = ENDPOINTS.animalImage + `?animalId=${animalId}`;
+            const response = await axios.get(url, { responseType: "arraybuffer" }); //params - klucz
+
+            if (!response.data) {
+                return console.error(
+                    "Błąd podczas pobierania obrazu zwierzaka: ",
+                    response.statusText
+                );
+            }
+
+            const blob = new Blob([response.data]);
+            const imageUrl = URL.createObjectURL(blob);
+
+            setAnimalImages((prevAnimalImages) => ({
+                ...prevAnimalImages,
+                [animalId]: imageUrl,
+            }));
+        } catch {
+            console.error("Błąd podczas komunikacji z serwerem: ");
+        }
+    };
+
+    useEffect(() => {
+        getAnimalList();
+    }, []);
 
     return (
         <div>
@@ -103,10 +130,10 @@ export function AnimalList() {
                     <option value="CAT">KOT</option>
                     <option value="OTHER">INNE</option>
                 </select>
-                <input className="input-submit-filtration" type="button" value="Szukaj" onClick={refetchAnimalList}/>
+                <input className="input-submit-filtration" type="button" value="Szukaj" onClick={getAnimalList}/>
             </form>
             <div className="animal">
-                <div className="animal-box">{animalsListData && animalsListData.map((animal) => (
+                <div className="animal-box">{animalsList && animalsList.map((animal) => (
                         <Link to={`/animal/${animal.id}`} key={animal.id} className="animal-img">
                             <img src={animalImages[animal.id]} alt={animal.name} />
                             <p>{animal.name}</p>

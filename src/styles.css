@@ -94,6 +94,24 @@ body {
 
 }
 
+.logout {
+    background-color: var(--white);
+    text-decoration: none;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    padding: .25rem;
+    border: none;
+    font-size: 1rem;
+}
+
+.logout:hover {
+    background-color: var(--dark);
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    color: white;
+}
+
 /* media queries https://www.youtube.com/watch?v=MJUssi2c6Ls*/
 /* @media (max-width: 700px) {
     .nav {
