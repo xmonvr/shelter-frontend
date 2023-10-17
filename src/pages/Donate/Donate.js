@@ -1,10 +1,12 @@
 import "./Donate.css";
 import React, {useState} from 'react';
 import {useParams} from "react-router-dom";
+import {ENDPOINTS} from "../../api/endpoints";
+import axios from "axios";
 
 export default function Donate() {
 
-    let { id } = useParams();
+    let {id} = useParams();
     const [paymentDescription, setPaymentDescription] = useState("");   //todo use state
 
     const handlePayment = async (event) => {
@@ -12,11 +14,10 @@ export default function Donate() {
         const form = event.target;
         const formData = new FormData(form);
 
-        let data;
+        let paymentData;
         if (id !== 0) {
             setPaymentDescription(`Darowizna na zwierze id ${id}`);
-            console.log("Darowizna na zwierze id" + paymentDescription);
-            data = {
+            paymentData = {
                 description: formData.get("description"),
                 buyerEmail: formData.get("buyerEmail"),
                 buyerFirstName: formData.get("buyerFirstName"),
@@ -26,9 +27,8 @@ export default function Donate() {
             }
         } else {
             setPaymentDescription("Darowizna na schronisko");
-            console.log("0 Darowizna na schronisko" + paymentDescription);
             id = 0;
-            data =
+            paymentData =
                 {
                     description: formData.get("description"),
                     buyerEmail: formData.get("buyerEmail"),
@@ -40,25 +40,24 @@ export default function Donate() {
         }
 
         try {
-            let url;
-            url = "http://localhost:8081/order/create-order";
-            const response = await fetch(url, {
-                method: "POST",
+            const response2 = await axios.post(ENDPOINTS.createOrder, paymentData, {
                 headers: {
                     "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data),
+                }
             })
-                .then(response => response.json())
-                .then(data => {
-                    const redirectUri = data.redirectUri;
-                    console.log('redirectURI: ', redirectUri);
-                    console.log('Odpowiedź z serwera:', data);
+                .then(res => {
+                    const redirectUri = res.data.redirectUri;
                     window.location.href = redirectUri;
                 })
                 .catch(error => {
                     console.error('Błąd:', error);
                 });
+            if (!response2.data) {
+                return console.error(
+                    "Błąd podczas pobierania pobierania listy zwierzat: ",
+                    response2.statusText
+                );
+            }
         } catch (error) {
             console.error("Błąd podczas komunikacji z serwerem:", error);
         }

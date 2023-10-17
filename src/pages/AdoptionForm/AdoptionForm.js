@@ -3,20 +3,25 @@ import {useParams} from "react-router-dom";
 import {useState} from "react";
 import {Popup} from "../../Popup";
 import {questionsList} from "./questions";
-import {useAxiosMutate} from "../../hooks/api";
 import {ENDPOINTS} from "../../api/endpoints";
+import axios from "axios";
+import {useLocalStorage} from "../../hooks/useLocalStorage";
 
 export default function AdoptionForm() {
-    const [isOpen, setIsOpen] = useState(false)
-    const { id } = useParams();
+    //popup
+    const [isOpen, setIsOpen] = useState(false);
 
-    const submitForm = useAxiosMutate("post");
-    const  submitPdf = useAxiosMutate("post");
+    const {id} = useParams();
+
+    //auth
+    const {getItem} = useLocalStorage();
 
     const handleSubmit = async (event) => {
+        //url
         const urlSend = `${ENDPOINTS.sendAdoptionForm}?animalId=${id}`;
         const urlPdf = `${ENDPOINTS.adoptionFormPdf}?animalId=${id}`;
 
+        //-------
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
@@ -43,14 +48,23 @@ export default function AdoptionForm() {
         questionsList.forEach((question, i) => {
             data.questions[question] = formData.get(`${question}`);
         });
-        console.log("question list 1" + questionsList);
 
         if (event.nativeEvent.submitter.id === "submit-send") {
-            await submitForm({method: "POST", url: urlSend, body: data})
+            await axios.post(urlSend, data, {
+                headers: {
+                    Authorization: getItem("token"),
+                    "Content-Type": "application/json",
+                }
+            })
                 .then(() => alert("Operacja wykonana"))
                 .catch(() => setIsOpen(true));
         } else {
-            await submitPdf({method: "POST", url: urlPdf, body: data})
+            await axios.post(urlPdf, data, {
+                headers: {
+                    Authorization: getItem("token"),
+                    "Content-Type": "application/json",
+                }
+            })
                 .then(() => alert("Operacja wykonana"))
                 .catch(() => setIsOpen(true));
         }

@@ -85,7 +85,7 @@ export function AnimalList() {
     const getImageByAnimalId = async (animalId) => {
         try {
             const url = ENDPOINTS.animalImage + `?animalId=${animalId}`;
-            const response = await axios.get(url, { responseType: "arraybuffer" }); //params - klucz
+            const response = await axios.get(url, {responseType: "arraybuffer"}); //params - klucz
 
             if (!response.data) {
                 return console.error(

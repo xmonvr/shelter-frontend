@@ -1,10 +1,10 @@
-import { Link  } from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useAuth} from "../auth/auth";
 import {CustomLink} from "./CustomLink";
 
 export default function Navbar() {
 
-    const { user, logout } = useAuth();
+    const {user, logout} = useAuth();
     const defaultId = 0;
 
     const handleLogout = () => {

@@ -17,6 +17,7 @@ export const ENDPOINTS = {    //obiekt
     contact: "/tab/get-contact-entry",
     editContact: "/tab/add-contact-entry",
     sendAdoptionForm: "/adoptions/send-adoption-form",
-    adoptionFormPdf: "/adoptions/adoption-form-pdf"
+    adoptionFormPdf: "/adoptions/adoption-form-pdf",
+    createOrder: "/order/create-order"
 };
 // ENDPOINTS.about - referancja ado pola ktore trzyma dana wartosc

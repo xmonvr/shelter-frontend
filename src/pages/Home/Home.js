@@ -1,5 +1,5 @@
 import './Home.css';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import homeImage from "../photo/home.jpg";
 export default function Home() {
     let id = 0;

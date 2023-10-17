@@ -1,11 +1,11 @@
-import { useContext, useEffect } from "react";
+import {useContext, useEffect} from "react";
 import jwt_decode from "jwt-decode";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { AuthContext } from "../auth/AuthContext";
+import {useLocalStorage} from "../hooks/useLocalStorage";
+import {AuthContext} from "../auth/AuthContext";
 
 export const useAuth = () => {
-  const { user, setUser, setToken } = useContext(AuthContext);    // destrukturyzacja
-  const { getItem, removeItem, setItem } = useLocalStorage();
+  const {user, setUser, setToken} = useContext(AuthContext);    // destrukturyzacja
+  const {getItem, removeItem, setItem} = useLocalStorage();
 
   //wczytanie tokena oraz informacje o zalogowanym userze po przeladowaniu strony
   useEffect(() => {
@@ -38,5 +38,5 @@ export const useAuth = () => {
     removeItem("token");
   };
 
-  return { user, login, logout };
+  return {user, login, logout};
 };

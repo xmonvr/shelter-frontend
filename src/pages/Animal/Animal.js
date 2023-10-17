@@ -1,30 +1,88 @@
+// import "./Animal.css"
+// import {Link, useParams} from "react-router-dom";
+// import {useAnimal} from "./useAnimal";
+// import {useAnimalImage} from "./useAnimalImage";
+//
+// export default function Animal() {
+//
+//     const {id} = useParams();
+//     const {animalData, error} = useAnimal(id);
+//     const {imageUrl, imageError} = useAnimalImage(id);
+//     // let imageUrl = 0;
+//     if (imageUrl) {
+//         console.log("image")
+//     } else if (error) {
+//         return <p>Błąd podczas komunikacji z serwerem: {error}</p>;
+//     } else {
+//         return <p>Błąd podczas komunikacji z serwerem: {error}</p>;
+//
+//     }
+//     const convertTypeOfAnimal = (typeOfAnimal) => {
+//         if (typeOfAnimal === "CAT" )
+//             return "kot";
+//         else if (typeOfAnimal === "DOG")
+//             return "pies";
+//         else
+//             return "inne";
+//     }
+//
+//     // useEffect(() => {
+//     //     // getAnimalById();
+//     //     getImageByAnimalId();
+//     // }, []);
+//
+//     return (
+//         <div className="animal-animal">
+//             <div className="leftside-animal">
+//                 <img src={imageUrl} alt="animal" className="photo-animal"/>
+//             </div>
+//             <div className="rightside-animal">
+//                 <div className="info-animal">
+//                     <p>Imię: {animalData && animalData.name}</p>
+//                     <p>Typ: {animalData && convertTypeOfAnimal(animalData.typeOfAnimal)} </p>
+//                     <p>Płeć: {animalData && animalData.gender}</p>
+//                     <p>Wiek: {animalData && animalData.age}</p>
+//                     <p>Id: {animalData && animalData.id}</p>
+//                     <p>Opis: {animalData && animalData.description}</p>
+//                 </div>
+//                 <div className="buttons-animal">
+//                     <Link to={`/adoption-form/${id}`} className="adoption-form-animal">
+//                         Adoptuj
+//                     </Link>
+//                     <Link to={`/donate/${id}`} className="virtual-adoption-animal">
+//                         Adoptuj wirtualnie
+//                     </Link>
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
+
 import "./Animal.css"
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
+import axios from "axios";
+import {ENDPOINTS} from "../../api/endpoints";
 
 export default function Animal() {
 
     const [animalInfo, setAnimalInfo] = useState("");
     const [animalImage, setAnimalImage] = useState("");
-    const { id } = useParams();
+    const {id} = useParams();
 
     const getAnimalById = async () => {
 
         try {
-            const url = `http://localhost:8081/animal/animal-by-id?id=${id}`;
-            const response = await fetch(url);
+            const url = ENDPOINTS.animal + `?id=${id}`;
+            const response = await axios.get(url);
 
-            if (response.ok) {
-                const info = await response.json();
-                console.log("info: " + info.name)
-                setAnimalInfo(info);
-                console.log("name: ", animalInfo)
-                console.log("image: ", )
-            } else {
-                console.error("Błąd podczas pobierania informacji o zwierzęciu: ", response.statusText);
-                //todo dodać, że tylko  zalogowany uzytkownik moze wysylac formularz adopcyjny. wtedy po kliknięciu
-                //"Adoptuj" przekierowuje na stronę logowania
+            if (!response.data) {
+                return console.error(
+                    "Błąd podczas pobierania pobierania danych zwierzęcia: ",
+                    response.statusText
+                );
             }
+            setAnimalInfo(response.data);
         } catch (error) {
             console.error("Błąd podczas komunikacji z serwerem: ", error);
         }
@@ -32,19 +90,25 @@ export default function Animal() {
 
     const getImageByAnimalId = async () => {
         try {
-            const url = `http://localhost:8081/images/get-image-by-animalId?animalId=${id}`;
-            const response = await fetch(url);
-            console.log("id --> " + id);
-            if (response.ok) {
-                //dokumentacja https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch "Supplying your own request object"
-                const image = await response.blob();
-                const imageUrl = URL.createObjectURL(image);
-                setAnimalImage(imageUrl);
-            } else {
-                console.error("Błąd podczas pobierania obrazu zwierzaka: ", response.statusText);
+            const url = ENDPOINTS.animalImage + `?animalId=${id}`;
+            const response = await axios.get(url, {responseType: "arraybuffer"}); //params - klucz
+
+            if (!response.data) {
+                return console.error(
+                    "Błąd podczas pobierania obrazu zwierzaka: ",
+                    response.statusText
+                );
             }
-        } catch (error) {
-            console.error("Błąd podczas komunikacji z serwerem: ", error);
+
+            const blob = new Blob([response.data]);
+            const imageUrl = URL.createObjectURL(blob);
+            setAnimalImage(imageUrl);
+            // setAnimalImage((prevAnimalImages) => ({
+            //     ...prevAnimalImages,
+            //     [id]: imageUrl,
+            // }));
+        } catch {
+            console.error("Błąd podczas komunikacji z serwerem: ");
         }
     };
 

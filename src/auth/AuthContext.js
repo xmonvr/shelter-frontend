@@ -1,4 +1,4 @@
-import { createContext, useCallback, useMemo, useState } from "react";
+import {createContext, useCallback, useMemo, useState} from "react";
 
 export const AuthContext = createContext({
   user: null,
@@ -7,7 +7,7 @@ export const AuthContext = createContext({
   setToken: () => {},
 });
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   const contextValue = useMemo(       //zeby sie nie renderowalo caly czas
-      () => ({ user, token, setUser: handleLogin, setToken: handleSetToken }),
+      () => ({user, token, setUser: handleLogin, setToken: handleSetToken}),
       [user, token, handleLogin, handleSetToken]
   );
 
