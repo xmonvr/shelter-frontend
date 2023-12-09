@@ -3,11 +3,11 @@ export const BASE_URL = "http://localhost:8081";
 export const ENDPOINTS = {    //obiekt
     about: "/tab/get-about-entry",    //wlasciwosci obiektu/pola
     animal: "/animal/animal-by-id",
-    animalImage: "/images/get-image-by-animalId",
+    animalImage: "/animal/get-image-by-animalId",
     filteredAnimals: "/animal/filtered-animals",
     editAbout: "tab/add-about-entry",
-    donate: "/order/create-order",
     login: "/user/login",
+    logout: "/auth/logout",
     registration: "/registration",
     volutary: "/tab/get-volunteering-entry",
     editVoluntery: "tab/add-volunteering-entry",

@@ -137,7 +137,7 @@ export default function Animal() {
                     <p>Typ: {convertTypeOfAnimal(animalInfo.typeOfAnimal)} </p>
                     <p>Płeć: {animalInfo.gender}</p>
                     <p>Wiek: {animalInfo.age}</p>
-                    <p>Id: {animalInfo.id}</p>
+                    <p>ID: {animalInfo.id}</p>
                     <p>Opis: {animalInfo.description}</p>
                 </div>
                 <div className="buttons-animal">

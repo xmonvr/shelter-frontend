@@ -53,7 +53,7 @@ body {
     font-size: 2rem;
 }
 
-.nav ul {
+.nav-list {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -61,14 +61,14 @@ body {
     gap: 1rem;
 }
 
-.administration-nav-bar {
-    color: inherit;
-    text-decoration: none;
-    height: 90%;
-    display: flex;
-    align-items: center;
-    padding: .25rem;
-}
+/*.administration-nav-bar {*/
+/*    color: inherit;*/
+/*    text-decoration: none;*/
+/*    height: 90%;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    padding: .25rem;*/
+/*}*/
 
 .nav a {
     color: inherit;
@@ -77,21 +77,30 @@ body {
     display: flex;
     align-items: center;
     padding: .25rem;
+    /*color: white;*/
 }
 
-.nav li.active {
+.transitioning,
+.pending,
+.active2,
+.active {
     background-color: var(--dark);
-    border-radius: .5rem;
-    padding: .5rem 1rem;
-    color: white;
+    border-radius: 0.5rem !important;
+    padding-left: 1rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-right: 1rem !important;
+    padding-top: 0.5rem !important;
+    color: white !important;
 }
 
-.nav li:hover {
+.active2:hover {
     background-color: var(--dark);
-    border-radius: .5rem;
-    padding: .5rem 1rem;
-    color: white;
-
+    border-radius: 0.5rem !important;
+    padding-left: 1rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-right: 1rem !important;
+    padding-top: 0.5rem !important;
+    color: white !important;
 }
 
 .logout {
@@ -111,39 +120,4 @@ body {
     padding: .5rem 1rem;
     color: white;
 }
-
-/* media queries https://www.youtube.com/watch?v=MJUssi2c6Ls*/
-/* @media (max-width: 700px) {
-    .nav {
-        position: absolute;
-        display: inline-block;
-        top: 0; left:0; right: 0; 
-        background-color: #9A8C98;
-        border-top: .01rem solid rgba(0, 0, 0, 0.2);
-        padding: 1rem;
-    }
-
-    .nav ul {
-        display: block;
-        padding: 1.5rem;
-        margin: .1rem;
-        font-size: 1rem;
-        background: #9A8C98;
-    }
-    
-    .nav a {
-        top: 100%; left:0; right: 0; 
-        display: block;
-        padding: 1.5rem;
-        margin: 1rem;
-        font-size: 1.5rem;
-        background: #9A8C98;
-        /* color: inherit;
-        text-decoration: none;
-        height: 90%;
-        display: flex;
-        align-items: center;
-        padding: .25rem; 
-    }
-} */
 

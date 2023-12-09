@@ -15,7 +15,7 @@ import EditAboutUs from "../pages/admin/editAboutUs/EditAboutUs";
 import EditVoluntary from "../pages/admin/editVoluntary/EditVoluntary";
 import EditContact from "../pages/admin/editContact/EditContact";
 import Voluntary from "../pages/Voluntary/Voluntary";
-import {useAuth} from "../auth/auth";
+import {useAuth} from "../auth/useAuth";
 import {LoginPage} from "../pages/Login/LoginPage";
 
 export function Router() {

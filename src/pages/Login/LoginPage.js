@@ -1,7 +1,7 @@
 import "./LoginPage.css";
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {useAuth} from "../../auth/auth";
+import {useAuth} from "../../auth/useAuth";
 import {Popup} from "../../Popup";
 import axios from "axios";
 import {ENDPOINTS} from "../../api/endpoints";

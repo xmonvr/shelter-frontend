@@ -11,12 +11,6 @@ export function About() {
         try {
             const url = ENDPOINTS.about;
             const response = await axios.get(url); //params - klucz
-            if (!response.data) {
-                return console.error(
-                    "Błąd podczas pobierania pobierania zakładki O nas.",
-                    response.statusText
-                );
-            }
             setAbout(response.data);
         } catch(error) {
             console.error("Błąd podczas komunikacji z serwerem: ", error);

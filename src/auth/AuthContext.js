@@ -19,8 +19,11 @@ export const AuthContextProvider = ({children}) => {
     setToken(newToken);
   }, []);
 
-  const contextValue = useMemo(       //zeby sie nie renderowalo caly czas
-      () => ({user, token, setUser: handleLogin, setToken: handleSetToken}),
+  const contextValue = useMemo(() => ({     //zeby sie nie renderowalo caly czas
+        user,
+        token,
+        setUser: handleLogin,
+        setToken: handleSetToken}),
       [user, token, handleLogin, handleSetToken]
   );
 

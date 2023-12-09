@@ -51,7 +51,7 @@ export default function EditAnimal() {
                 <div className="animal-box-edit-animal">
                     <div className="animal-info-edit-animal">
                         <div className="id-edit-animal">
-                            <label className="label-id-edit-animal" htmlFor="id">Id:</label>
+                            <label className="label-id-edit-animal" htmlFor="id">ID:</label>
                             <input className="input-id-edit-animal" type="number" id="id" name="id" value={id} onChange={(event) => setId(event.target.value)} required/>
                         </div>
 

@@ -16,7 +16,7 @@ export default function Donate() {
 
         let paymentData;
         if (id !== 0) {
-            setPaymentDescription(`Darowizna na zwierze id ${id}`);
+            setPaymentDescription(`Darowizna na zwierze ID ${id}`);
             paymentData = {
                 description: formData.get("description"),
                 buyerEmail: formData.get("buyerEmail"),
@@ -73,7 +73,7 @@ export default function Donate() {
                 <div className="description-donate">
                     <label className="label-description-donate" htmlFor="description">Opis:</label>
                     <input className="input-description-donate" type="text" id="description" name="description" value={
-                        id !== "0" ? `Darowizna na zwierze id ${id}` : "Darowizna na schronisko"
+                        id !== "0" ? `Darowizna na zwierze ID ${id}` : "Darowizna na schronisko"
                     } readOnly/>
                 </div>
                 <div className="product-unit-price-donate">

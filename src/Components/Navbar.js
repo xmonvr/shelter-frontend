@@ -1,34 +1,33 @@
-import {Link} from "react-router-dom";
-import {useAuth} from "../auth/auth";
-import {CustomLink} from "./CustomLink";
+import {Link, NavLink} from "react-router-dom";
+import {useAuth} from "../auth/useAuth";
 
 export default function Navbar() {
 
     const {user, logout} = useAuth();
     const defaultId = 0;
 
-    const handleLogout = () => {
-        logout();
-    }
+    // const handleLogout = () => {
+    //     logout();
+    // }
 
     return <nav className="nav">
         {/*dodajemy clas name, zeby dalo sie stylowac*/}
         <Link to="/" className="site-title">Schronisko</Link>
-        <ul>
+        <ul className="nav-list">
             <div className="administration-nav-bar">
                 {user && user.role === "ADMIN" && (
-                    <CustomLink to="/administration-page">Administracja</CustomLink>
+                    <NavLink to="/administration-page" className={({isPending, isActive, isTransitioning}) => isPending ? "pending" : isActive ? "active2" : isTransitioning ? "Transitioning" : ""}>Administracja</NavLink>
                 )}
             </div>
 
-            <CustomLink to="/adopt">Zaadoptuj</CustomLink>
-            <CustomLink to={`/donate/${defaultId}`}>Wesprzyj</CustomLink>
-            <CustomLink to="/contact">Kontakt</CustomLink>
-            <CustomLink to="/about">O nas</CustomLink>
+            <NavLink to="/adopt" className={({isPending, isActive, isTransitioning}) => isPending ? "pending" : isActive ? "active2" : isTransitioning ? "Transitioning" : ""}>Zaadoptuj</NavLink>
+            <NavLink to={`/donate/${defaultId}`} className={({isPending, isActive}) => isPending ? "pending" : isActive ? "active2" : ""}>Wesprzyj</NavLink>
+            <NavLink to="/contact" className={({isPending, isActive}) => isPending ? "pending" : isActive ? "active2" : ""}>Kontakt</NavLink>
+            <NavLink to="/about" className={({isPending, isActive}) => isPending ? "pending" : isActive ? "active2" : ""}>O nas</NavLink>
             {user ? (
-                <button className="logout" onClick={handleLogout}>Wyloguj</button>
+                <button className="logout" onClick={logout}>Wyloguj</button>
             ) : (
-                <CustomLink to="/login">Zaloguj</CustomLink>
+                <NavLink to="/login" className={({isPending, isActive}) => isPending ? "pending" : isActive ? "active2" : ""}>Zaloguj</NavLink>
             )}
         </ul>
     </nav>

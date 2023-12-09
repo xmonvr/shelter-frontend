@@ -28,11 +28,11 @@ export default function DeleteAnimal() {
     return (
         <div className="container-delete-animal">
             <form className="form-delete-animal" onSubmit={deleteAnimal}>
-                <h2 className="animal-header-delete-animal">Wybierz id:</h2>
+                <h2 className="animal-header-delete-animal">Wybierz ID:</h2>
                 <div className="animal-box-delete-animal">
                     <div className="animal-delete-animal">
                         <div className="id-delete-animal">
-                            <label className="label-id-delete-animal" htmlFor="id">Id:</label>
+                            <label className="label-id-delete-animal" htmlFor="id">ID:</label>
                             <input className="input-id-delete-animal" type="number" id="id" name="id"  value={animalId}  onChange={event => setAnimalId(event.target.value)} required/>
                         </div>
                     </div>
