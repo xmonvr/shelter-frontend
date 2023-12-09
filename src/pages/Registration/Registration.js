@@ -34,9 +34,6 @@ export default function Registration() {
                      <div className="password">
                         <label className="label-password-registration" for="password">Hasło:</label>
                         <input className="input-password-registration" type="password" id="password" name="password" required />
-                    {/* </div> */}
-
-                    {/* <div className="confirm_password"> */}
                         <label className="label-confirm-pswd-registration" for="confirm-password">Powtórz hasło:</label>
                         <input className="input-confirm-pswd-registration" type="password" id="confirmPassword" name="confirm-password" required />
                      </div>
@@ -44,9 +41,6 @@ export default function Registration() {
                     <div className="name">
                         <label className="label-first-name-registration" for="first-name">Imię:</label>
                         <input className="input-first-name-registration" type="text" id="first-name" name="firstName" required />
-                    {/* </div> */}
-                
-                    {/* <div className="last_name"> */}
                         <label className="label-last-name-registration" for="last-name">Nazwisko:</label>
                         <input className="input-last-name-registration" type="text" id="last-name" name="lastName" required />
                     </div>
@@ -55,16 +49,12 @@ export default function Registration() {
                         <label className="label-birth-date-registration" for="birth-date">Data urodzenia:</label>
                         <input className="input-birth-date-registration" type="date" id="birth-date" name="birthDate" required />
                      </div>
-
-                    {/* <div className="policy"> */}
-                        <label className="label-checkbox-registration">
-                            <input type="checkbox" name="checkbox" id="checkbox" required/>
-                            &nbsp;Zakładając konto wyrażasz zgodę na warunki i politykę.
-                        </label>
-                    {/* </div> */}
-                
-                    <input className="input-submit-registration" type="submit" value="Zarejestruj się" />
-                    <div className="register-button-registration"></div>
+                <label className="label-checkbox-registration">
+                    <input type="checkbox" name="checkbox" id="checkbox" required/>
+                    &nbsp;Zakładając konto wyrażasz zgodę na warunki i politykę.
+                </label>
+                <input className="input-submit-registration" type="submit" value="Zarejestruj się" />
+                <div className="register-button-registration"></div>
             </form>
         </div>
     )

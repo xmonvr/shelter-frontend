@@ -7,7 +7,6 @@ export default function Home() {
         <div className="home-page">
             <div className="central-bar">
                 <img src={homeImage} alt="animal" className="central-photo"/>
-                {/*<p>Wesprzyj/cytat o zwierzętach ze schroniska/przesuwane różne informacje</p>*/}
             </div>
             <div className='container'>
                 <Link to="/adopt?type=DOG" className="adopt-a-dog">

@@ -6,12 +6,7 @@ export default function Navbar() {
     const {user, logout} = useAuth();
     const defaultId = 0;
 
-    // const handleLogout = () => {
-    //     logout();
-    // }
-
     return <nav className="nav">
-        {/*dodajemy clas name, zeby dalo sie stylowac*/}
         <Link to="/" className="site-title">Schronisko</Link>
         <ul className="nav-list">
             <div className="administration-nav-bar">

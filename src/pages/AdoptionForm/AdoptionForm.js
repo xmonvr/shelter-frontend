@@ -8,20 +8,16 @@ import axios from "axios";
 import {useLocalStorage} from "../../hooks/useLocalStorage";
 
 export default function AdoptionForm() {
-    //popup
     const [isOpen, setIsOpen] = useState(false);
 
     const {id} = useParams();
 
-    //auth
     const {getItem} = useLocalStorage();
 
     const handleSubmit = async (event) => {
-        //url
         const urlSend = `${ENDPOINTS.sendAdoptionForm}?animalId=${id}`;
         const urlPdf = `${ENDPOINTS.adoptionFormPdf}?animalId=${id}`;
 
-        //-------
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
@@ -85,7 +81,7 @@ export default function AdoptionForm() {
                         <input className="input-last-name-adoption-form" type="text" id="last-name" name="last-name" required/>
                     </div>
                     <div className="phone-number-adoption-form">
-                        <label className="label-phone-number-adoption-form" htmlFor="phone-number">Numer telefonu:</label>      {/*jest takie cos jak react-phone-number-input*/} {/*Zrodlo: https://www.w3schools.com/tags/att_input_type_tel.asp*/}
+                        <label className="label-phone-number-adoption-form" htmlFor="phone-number">Numer telefonu:</label>
                         <input className="input-phone-number-adoption-form" type="tel" id="phone-number" name="phone-number" placeholder="123456789" pattern="[0-9]{9}" required/>
                     </div>
                     <div className="email-adoption-form">
@@ -117,30 +113,6 @@ export default function AdoptionForm() {
                         <input className="input-country-adoption-form" type="text" id="country" name="country" required/>
                     </div>
                 </div>
-               {/* <h2 className="animal-info-header-adoption-form">Dane zawirzaka</h2>
-                <small className="small-animal-adoption-form">Dane zwierzęcia do adopcji</small>
-                <div className="animal-info-adoption-form">
-                    <div className="name-adoption-form">
-                        <label className="label-name-adoption-form" htmlFor="name">Imię:</label>
-                        <input className="input-name-adoption-form" type="text" id="name" name="name" required/>
-                    </div>
-                    <div className="type-of-animal-adoption-form">
-                        <label className="label-type-of-animal-adoption-form" htmlFor="type-of-animal">Typ:</label>
-                        <input className="input-type-of-animal-adoption-form" type="text" id="type-of-animal" name="type-of-animal" required/>
-                    </div>
-                    <div className="chip-number-adoption-form">
-                        <label className="label-chip-number-adoption-form" htmlFor="chip-number">Numer chip:</label>
-                        <input className="input-chip-number-adoption-form" type="number" id="chip-number" name="chip-number" required/>
-                    </div>
-                    <div className="vaccinated-adoption-form">
-                        <label    className="label-vaccinated-adoption-form" htmlFor="vaccinated">Szczepienie:</label>
-                        <input className="input-vaccinated-adoption-form" type="text" id="vaccinated" name="vaccinated" required/>
-                    </div>
-                    <div className="age-adoption-form">
-                        <label className="label-age-adoption-form" htmlFor="age">Wiek:</label>
-                        <input className="input-age-adoption-form" type="number" id="age" name="age" required/>
-                    </div>
-                </div>*/}
                 <h2 className="questions-header-adoption-form">Ankieta</h2>
                 <small className="small-questions-adoption-form">Odpowiadaj na pytania szczerze, nie zatajaj faktów. Ankieta służy nam do zbadnia warunków, w które zostaną oddane zwierzęta.
                     Tobie służy przemyśleniu, czy jesteś gotów wziąć odpowiedzialność za zwierzę.</small>

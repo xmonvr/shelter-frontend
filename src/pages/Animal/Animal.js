@@ -1,63 +1,3 @@
-// import "./Animal.css"
-// import {Link, useParams} from "react-router-dom";
-// import {useAnimal} from "./useAnimal";
-// import {useAnimalImage} from "./useAnimalImage";
-//
-// export default function Animal() {
-//
-//     const {id} = useParams();
-//     const {animalData, error} = useAnimal(id);
-//     const {imageUrl, imageError} = useAnimalImage(id);
-//     // let imageUrl = 0;
-//     if (imageUrl) {
-//         console.log("image")
-//     } else if (error) {
-//         return <p>Błąd podczas komunikacji z serwerem: {error}</p>;
-//     } else {
-//         return <p>Błąd podczas komunikacji z serwerem: {error}</p>;
-//
-//     }
-//     const convertTypeOfAnimal = (typeOfAnimal) => {
-//         if (typeOfAnimal === "CAT" )
-//             return "kot";
-//         else if (typeOfAnimal === "DOG")
-//             return "pies";
-//         else
-//             return "inne";
-//     }
-//
-//     // useEffect(() => {
-//     //     // getAnimalById();
-//     //     getImageByAnimalId();
-//     // }, []);
-//
-//     return (
-//         <div className="animal-animal">
-//             <div className="leftside-animal">
-//                 <img src={imageUrl} alt="animal" className="photo-animal"/>
-//             </div>
-//             <div className="rightside-animal">
-//                 <div className="info-animal">
-//                     <p>Imię: {animalData && animalData.name}</p>
-//                     <p>Typ: {animalData && convertTypeOfAnimal(animalData.typeOfAnimal)} </p>
-//                     <p>Płeć: {animalData && animalData.gender}</p>
-//                     <p>Wiek: {animalData && animalData.age}</p>
-//                     <p>Id: {animalData && animalData.id}</p>
-//                     <p>Opis: {animalData && animalData.description}</p>
-//                 </div>
-//                 <div className="buttons-animal">
-//                     <Link to={`/adoption-form/${id}`} className="adoption-form-animal">
-//                         Adoptuj
-//                     </Link>
-//                     <Link to={`/donate/${id}`} className="virtual-adoption-animal">
-//                         Adoptuj wirtualnie
-//                     </Link>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
-
 import "./Animal.css"
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
@@ -103,10 +43,6 @@ export default function Animal() {
             const blob = new Blob([response.data]);
             const imageUrl = URL.createObjectURL(blob);
             setAnimalImage(imageUrl);
-            // setAnimalImage((prevAnimalImages) => ({
-            //     ...prevAnimalImages,
-            //     [id]: imageUrl,
-            // }));
         } catch {
             console.error("Błąd podczas komunikacji z serwerem: ");
         }

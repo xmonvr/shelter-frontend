@@ -18,7 +18,7 @@ export default function EditAnimal() {
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
 
-    const handleSubmit = async (event) => {         //todo dziala bez async await
+    const handleSubmit = async (event) => {
         const token = getItem("token");
         event.preventDefault();
         const formData = new FormData();        //form data jest odpowiednie dla dane + obraz

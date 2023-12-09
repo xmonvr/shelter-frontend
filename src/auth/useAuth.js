@@ -38,7 +38,6 @@ export const useAuth = () => {
 
   const logout = async () => {
     const token = getItem("token");
-    console.log("token --> " + token);
     //czyszczenie stanu contextu
 
       await axios.post(ENDPOINTS.logout, {}, {

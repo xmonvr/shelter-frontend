@@ -15,7 +15,7 @@ function App() {
         setIsLoggedIn(value);
     };
   return (
-      <AuthContextProvider>         {/*(<> ... </>) to specjalny rodzaj komponentu, który pozwala na zgrupowanie wielu elementów bez dodawania dodatkowego niepotrzebnego kontenera DOM*/}
+      <AuthContextProvider>
         <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} userRole={userRole} setUserRole={setUserRole}/>
         <div className="pageContainer">
             <Router/>

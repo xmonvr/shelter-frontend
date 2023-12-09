@@ -27,14 +27,12 @@ export function Router() {
             <Route path="/donate/:id" element={<Donate />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
-            <Route path="/login" element={<LoginPage/>} />          {/*to co tutaj bylo wczesniej dzieje sie w login*/}
+            <Route path="/login" element={<LoginPage/>} />
             {!user && (
                 <Route path="/register" element={<Registration />} />
             )}
             <Route path="/animal/:id" element={<Animal />} />
-            {/*{isLoggedIn && (*/}
             <Route path="/adoption-form/:id" element={<AdoptionForm />} />
-            {/*)}*/}
             {user && user.role === 'ADMIN' && (
                 <>
                     <Route path="/administration-page" element={<AdministrationPage />} />

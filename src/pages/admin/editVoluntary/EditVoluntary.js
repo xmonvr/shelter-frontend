@@ -12,7 +12,6 @@ export default function EditVoluntary() {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
         const token = getItem("token");
-        console.log("token " + token);
         const url = ENDPOINTS.editVoluntery;
         const response = await axios.post(url, data,
             {

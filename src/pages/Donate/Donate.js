@@ -7,7 +7,7 @@ import axios from "axios";
 export default function Donate() {
 
     let {id} = useParams();
-    const [paymentDescription, setPaymentDescription] = useState("");   //todo use state
+    const [paymentDescription, setPaymentDescription] = useState("");
 
     const handlePayment = async (event) => {
         event.preventDefault();
@@ -22,7 +22,7 @@ export default function Donate() {
                 buyerEmail: formData.get("buyerEmail"),
                 buyerFirstName: formData.get("buyerFirstName"),
                 buyerLastName: formData.get("buyerLastName"),
-                productName: "darowizna-schronisko",         // todo "schronisko" lub id animala
+                productName: "darowizna-schronisko",
                 productUnitPrice: formData.get("productUnitPrice")
             }
         } else {

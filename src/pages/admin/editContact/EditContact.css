@@ -24,22 +24,13 @@
     border-radius: 20px;
     box-shadow: var(--box-shadow-light);
     padding: 2rem;
-    /*height: 70vh;*/
-    /*width: 100vh;*/
 }
-
-/*.animal-info-edit-animal {*/
-/*    display: grid;*/
-/*    grid-template-columns: repeat(2, 5fr);*/
-/*    padding: 2rem;*/
-/*}*/
 
 .edit-contact {
     display: inline-flex;
     margin-right: 10px;
     font-weight: bold;
     width: 100%;
-    /*grid-template-columns: 1fr 1fr;*/
 }
 
 .label-edit-contact {

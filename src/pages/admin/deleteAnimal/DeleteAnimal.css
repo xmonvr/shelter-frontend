@@ -27,12 +27,6 @@
     padding: 2rem;
 }
 
-/*.animal-delete-animal {
-    display: grid;
-    grid-template-columns: repeat(2, 5fr);
-    padding: 2rem;
-}*/
-
 .id-delete-animal {
     display: inline-flex;
     margin-right: 10px;
