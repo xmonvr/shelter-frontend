@@ -1,7 +1,7 @@
 export const BASE_URL = "http://localhost:8081";
 
-export const ENDPOINTS = {    //obiekt
-    about: "/tab/get-about-entry",    //wlasciwosci obiektu/pola
+export const ENDPOINTS = {
+    about: "/tab/get-about-entry",
     animal: "/animal/animal-by-id",
     animalImage: "/animal/get-image-by-animalId",
     filteredAnimals: "/animal/filtered-animals",
@@ -20,4 +20,3 @@ export const ENDPOINTS = {    //obiekt
     adoptionFormPdf: "/adoptions/adoption-form-pdf",
     createOrder: "/order/create-order"
 };
-// ENDPOINTS.about - referancja ado pola ktore trzyma dana wartosc

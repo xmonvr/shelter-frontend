@@ -24,9 +24,7 @@ export function LoginPage() {
                     "Content-Type": "application/json",
                 },
             });
-            //pobranie tokena z odpowiedzi logowania
             const token = response.headers.get("Authorization");
-            // jesli token nie jest null/undefined/false, to wywolaj funkcje login() z useAuth i przekaz token z headera
             token && login(token);
             navigate("/");
         } catch (error) {

@@ -20,9 +20,6 @@ export default function EditAboutUs() {
                 "Content-Type": "application/json",
             },
         });
-        if (!response.ok) {
-            return <p>Błąd podczas komunikacji z serwerem.}</p>;
-        }
     }
 
     return (

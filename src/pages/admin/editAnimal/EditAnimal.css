@@ -3,7 +3,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 10px; /* dodanie odstępu na górze kontenera równego wysokości top bar */
+    padding-top: 10px;
+    padding-bottom: 78px;
 }
 
 .form-edit-animal {

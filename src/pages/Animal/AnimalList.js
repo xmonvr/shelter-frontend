@@ -47,13 +47,7 @@ export function AnimalList() {
     const getAnimalList = async () => {
         try {
             const url = ENDPOINTS.filteredAnimals + `?ageMin=${getFilters.ageMin}&ageMax=${getFilters.ageMax}&gender=${getFilters.gender}&typeOfAnimal=${getFilters.typeOfAnimal}`;
-            const response = await axios.get(url); //params - klucz
-            if (!response.data) {
-                return console.error(
-                    "Błąd podczas pobierania pobierania listy zwierzat: ",
-                    response.statusText
-                );
-            }
+            const response = await axios.get(url);
             setAnimalList(response.data);
         } catch(error) {
             console.error("Błąd podczas komunikacji z serwerem: ", error);
@@ -68,31 +62,10 @@ export function AnimalList() {
         }
     }, [animalsList]);
 
-    /*const getImageByAnimalId = async (animalId) => {
-        try {
-            const url = ENDPOINTS.animalImage + `?animalId=${animalId}`;
-            const response = await axios.get(url);
-            console.log("id --> " + animalId);
-            const image = response.data.blob(); //Binary Large Object
-            const imageUrl = URL.createObjectURL(image);
-            // aktualizujemy stan animalImages o nowy URL zdjęcia dla danego identyfikatora zwierzęcia
-            setAnimalImages(imageUrl);
-        } catch (error) {
-            console.error("Błąd podczas komunikacji z serwerem: ", error);
-        }
-    };*/
-
     const getImageByAnimalId = async (animalId) => {
         try {
             const url = ENDPOINTS.animalImage + `?animalId=${animalId}`;
-            const response = await axios.get(url, {responseType: "arraybuffer"}); //params - klucz
-
-            if (!response.data) {
-                return console.error(
-                    "Błąd podczas pobierania obrazu zwierzaka: ",
-                    response.statusText
-                );
-            }
+            const response = await axios.get(url, {responseType: "arraybuffer"});
 
             const blob = new Blob([response.data]);
             const imageUrl = URL.createObjectURL(blob);

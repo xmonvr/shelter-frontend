@@ -21,9 +21,6 @@ export default function EditVoluntary() {
                     },
                 }
             )
-        if (!response.ok) {
-            return <p>Błąd podczas komunikacji z serwerem.</p>;
-        }
     }
     return (
         <div className="container-edit-voluntary">

@@ -10,7 +10,7 @@ export function About() {
     const getAbout = async () => {
         try {
             const url = ENDPOINTS.about;
-            const response = await axios.get(url); //params - klucz
+            const response = await axios.get(url);
             setAbout(response.data);
         } catch(error) {
             console.error("Błąd podczas komunikacji z serwerem: ", error);

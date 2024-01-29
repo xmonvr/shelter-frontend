@@ -98,7 +98,7 @@ export default function AdoptionForm() {
                     </div>
                     <div className="house-number-adoption-form">
                         <label className="label-house-number-adoption-form" htmlFor="house-number">Nr domu:</label>
-                        <input className="input-house-number-adoption-form" type="text" id="house-number" name="house-number" placeholder="dom/mieszkanie" required/>        {/*//to moze zostac jako tekst, bo numer domu moze wygladac 4a m.7*/}
+                        <input className="input-house-number-adoption-form" type="text" id="house-number" name="house-number" placeholder="dom/mieszkanie" required/>
                     </div>
                     <div className="city-adoption-form">
                         <label className="label-city-adoption-form" htmlFor="city">Miasto:</label>

@@ -35,8 +35,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    /* 1 jednostka do góry, 7% swojej przstrzeni po bokach */
-    
 }
 
 .site-title {

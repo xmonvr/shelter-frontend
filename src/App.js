@@ -11,7 +11,7 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userRole, setUserRole] = useState('');
 
-    const setLoggedIn = (value) => {        //definicja funkcji przyjmujacej jedna wartosc value
+    const setLoggedIn = (value) => {
         setIsLoggedIn(value);
     };
   return (

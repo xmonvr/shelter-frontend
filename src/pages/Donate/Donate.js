@@ -52,12 +52,6 @@ export default function Donate() {
                 .catch(error => {
                     console.error('Błąd:', error);
                 });
-            if (!response2.data) {
-                return console.error(
-                    "Błąd podczas pobierania pobierania listy zwierzat: ",
-                    response2.statusText
-                );
-            }
         } catch (error) {
             console.error("Błąd podczas komunikacji z serwerem:", error);
         }
@@ -93,9 +87,6 @@ export default function Donate() {
                     <label className="label-buyer-email-donate" htmlFor="buyerEmail">Adres email:</label>
                     <input className="input-buyer-email-donate" type="email" id="buyerEmail" name="buyerEmail" required/>
                 </div>
-                {/*<input type="hidden" name="continueUrl" value="http://shop.url/continue"/>*/}
-                {/*<input type="hidden" name="OpenPayu-Signature" type="hidden"*/}
-                {/*       value="sender=145227;algorithm=SHA-256;signature=565f9f4dda43c8e24ccab4472133d680e2aa58e1f58bea845c4cf2926965144d"/>*/}
                 <button className="button-donate" type="submit" formTarget="_blank">Wesprzyj</button>
             </form>
         </div>

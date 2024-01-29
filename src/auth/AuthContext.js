@@ -14,12 +14,13 @@ export const AuthContextProvider = ({children}) => {
   const handleLogin = useCallback((user) => {
     setUser(user);
   }, []);
+  //pusta tablica [] zostanie zapamiętana na stałe
 
   const handleSetToken = useCallback((newToken) => {
     setToken(newToken);
   }, []);
 
-  const contextValue = useMemo(() => ({     //zeby sie nie renderowalo caly czas
+  const contextValue = useMemo(() => ({
         user,
         token,
         setUser: handleLogin,

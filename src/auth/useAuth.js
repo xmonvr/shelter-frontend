@@ -1,3 +1,4 @@
+
 import {useContext, useEffect} from "react";
 import jwt_decode from "jwt-decode";
 import {useLocalStorage} from "../hooks/useLocalStorage";
@@ -7,11 +8,10 @@ import {ENDPOINTS} from "../api/endpoints";
 import {useNavigate} from "react-router-dom";
 
 export const useAuth = () => {
-  const {user, setUser, setToken} = useContext(AuthContext);    // destrukturyzacja
+  const {user, setUser, setToken} = useContext(AuthContext);
   const {getItem, removeItem, setItem} = useLocalStorage();
   const navigate = useNavigate();
 
-  //wczytanie tokena oraz informacje o zalogowanym userze po przeladowaniu strony
   useEffect(() => {
     const userToken = getItem("token");
 
@@ -31,14 +31,12 @@ export const useAuth = () => {
     setItem("token", token);
     setItem("user", JSON.stringify(user));
 
-    //zapisanie do contextu
     setUser(user);
     setToken(token);
   };
 
   const logout = async () => {
     const token = getItem("token");
-    //czyszczenie stanu contextu
 
       await axios.post(ENDPOINTS.logout, {}, {
         headers: {

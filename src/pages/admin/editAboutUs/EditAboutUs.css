@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 30px; /* dodanie odstępu na górze kontenera równego wysokości top bar */
+    padding-top: 30px;
     height: 100vh;
 }
 

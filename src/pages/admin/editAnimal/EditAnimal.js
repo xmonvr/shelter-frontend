@@ -22,15 +22,15 @@ export default function EditAnimal() {
         const token = getItem("token");
         event.preventDefault();
         const formData = new FormData();        //form data jest odpowiednie dla dane + obraz
-        formData.append("id", id);
-        formData.append("name", name);
-        formData.append("typeOfAnimal", typeOfAnimal);
-        formData.append("chipNumber", chipNumber);
-        formData.append("gender", gender);
-        formData.append("isVaccinated", isVaccinated);
-        formData.append("age", age);
-        formData.append("description", description);
-        formData.append("image", image);
+        formData.append("id", id || null);
+        formData.append("name", name || "");
+        formData.append("typeOfAnimal", typeOfAnimal || "");
+        formData.append("chipNumber", chipNumber || "");
+        formData.append("gender", gender || "");
+        formData.append("isVaccinated", isVaccinated || false);
+        formData.append("age", age || "");
+        formData.append("description", description || "");
+        formData.append("image", image || null);
 
         const url =  ENDPOINTS.editAnimal;
         const response = await axios.put(url, formData, {
@@ -38,10 +38,6 @@ export default function EditAnimal() {
                     "Authorization": token
                 },
             });
-
-            if (!response.ok) {
-                return <p>Błąd podczas komunikacji z serwerem.</p>;
-            }
     }
 
     return (
@@ -58,6 +54,7 @@ export default function EditAnimal() {
                         <div className="name-edit-animal">
                             <label className="label-name-edit-animal" htmlFor="name">Imię:</label>
                             <input className="input-name-edit-animal" type="text" id="name" name="name" value={name} onChange={(event) => setName(event.target.value)}/>
+                            {/*<input className="input-name-edit-animal" type="text" id="name" name="name" value={name || ""} onChange={(event) => setName(event.target.value)}/>*/}
                         </div>
 
                         <div className="type-of-animal-edit-animal">

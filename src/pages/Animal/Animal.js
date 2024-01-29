@@ -16,12 +16,6 @@ export default function Animal() {
             const url = ENDPOINTS.animal + `?id=${id}`;
             const response = await axios.get(url);
 
-            if (!response.data) {
-                return console.error(
-                    "Błąd podczas pobierania pobierania danych zwierzęcia: ",
-                    response.statusText
-                );
-            }
             setAnimalInfo(response.data);
         } catch (error) {
             console.error("Błąd podczas komunikacji z serwerem: ", error);
@@ -31,14 +25,7 @@ export default function Animal() {
     const getImageByAnimalId = async () => {
         try {
             const url = ENDPOINTS.animalImage + `?animalId=${id}`;
-            const response = await axios.get(url, {responseType: "arraybuffer"}); //params - klucz
-
-            if (!response.data) {
-                return console.error(
-                    "Błąd podczas pobierania obrazu zwierzaka: ",
-                    response.statusText
-                );
-            }
+            const response = await axios.get(url, {responseType: "arraybuffer"});
 
             const blob = new Blob([response.data]);
             const imageUrl = URL.createObjectURL(blob);

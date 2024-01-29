@@ -19,10 +19,6 @@ export default function DeleteAnimal() {
                 "Content-Type": "application/json",
             },
         });
-
-        if (!response.ok) {
-            return <p>Błąd podczas komunikacji z serwerem.</p>;
-        }
     }
 
     return (

@@ -10,9 +10,6 @@ export default function Contact() {
     const getContact = async () => {
         try {
             const response = await axios.get(ENDPOINTS.contact);
-            if (!response.data) {
-                console.log("Błąd podczas pobierania danych kontaktowych.");
-            }
             setContact(response.data);
         } catch (error) {
             console.error("Błąd podczas komunikacji z serwerem: ", error);

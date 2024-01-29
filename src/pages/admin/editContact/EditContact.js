@@ -16,10 +16,6 @@ export default function EditContact() {
                 "Authorization": token
             }
             });
-
-            if (!response.ok) {
-                return <p>Błąd podczas komunikacji z serwerem.</p>;
-            }
         }
 
     return (
