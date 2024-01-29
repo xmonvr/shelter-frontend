@@ -23,7 +23,7 @@ export default function Voluntary() {
             <div className="box-voluntary">
                 <h2 className="header-voluntary">Wolontariat</h2>
                 <div className="info-voluntary">
-                    <p>{voluntary && voluntary.volunteeringEntry}</p>
+                    <p>{voluntary}</p>
                 </div>
             </div>
         </div>

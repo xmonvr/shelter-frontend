@@ -21,25 +21,23 @@ export default function AdoptionForm() {
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
-        const data =
-            {
-                adopter: {
-                    firstName: formData.get("first-name"),
-                    lastName: formData.get("last-name"),
-                    phoneNumber: formData.get("phone-number"),
-                    email: formData.get("email"),
-                    address: {
-                        street: formData.get("street"),
-                        houseNumber: formData.get("house-number"),
-                        city: formData.get("city"),
-                        zipCode: formData.get("zip-code"),
-                        country: formData.get("country")
-                    },
-                    dateOfBirth: formData.get("date-of-birth")
+        const data = {
+            adopter: {
+                firstName: formData.get("first-name"),
+                lastName: formData.get("last-name"),
+                phoneNumber: formData.get("phone-number"),
+                email: formData.get("email"),
+                address: {
+                    street: formData.get("street"),
+                    houseNumber: formData.get("house-number"),
+                    city: formData.get("city"),
+                    zipCode: formData.get("zip-code"),
+                    country: formData.get("country")
                 },
-                questions: {
-                }
-            };
+                dateOfBirth: formData.get("date-of-birth")},
+            questions: {
+            }
+        };
 
         questionsList.forEach((question, i) => {
             data.questions[question] = formData.get(`${question}`);
@@ -52,7 +50,6 @@ export default function AdoptionForm() {
                     "Content-Type": "application/json",
                 }
             })
-                .then(() => alert("Operacja wykonana"))
                 .catch(() => setIsOpen(true));
         } else {
             await axios.post(urlPdf, data, {
@@ -61,7 +58,6 @@ export default function AdoptionForm() {
                     "Content-Type": "application/json",
                 }
             })
-                .then(() => alert("Operacja wykonana"))
                 .catch(() => setIsOpen(true));
         }
     }

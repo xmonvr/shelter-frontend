@@ -26,7 +26,7 @@ export function About() {
             <div className="box-about">
                 <h2 className="header-about">O naszym schronisku</h2>
                 <div className="info-about">
-                    <p>{about && about.aboutUsEntry}</p>
+                    <p>{about}</p>
                 </div>
             </div>
         </div>

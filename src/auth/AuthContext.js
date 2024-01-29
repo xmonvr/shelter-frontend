@@ -14,7 +14,6 @@ export const AuthContextProvider = ({children}) => {
   const handleLogin = useCallback((user) => {
     setUser(user);
   }, []);
-  //pusta tablica [] zostanie zapamiętana na stałe
 
   const handleSetToken = useCallback((newToken) => {
     setToken(newToken);

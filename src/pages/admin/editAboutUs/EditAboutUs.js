@@ -4,17 +4,15 @@ import axios from "axios";
 import {useLocalStorage} from "../../../hooks/useLocalStorage";
 
 export default function EditAboutUs() {
-
     const {getItem} = useLocalStorage();
 
     const handleEditAboutUs = async (event) => {
         const token = getItem("token");
         event.preventDefault();
         const form = event.target;
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+        const aboutUsEntry = form.elements.aboutUsEntry.value;
         const url =  ENDPOINTS.editAbout;
-        const response = await axios.post(url, data,{
+        const response = await axios.post(url, aboutUsEntry, {
                 headers: {
                 "Authorization": token,
                 "Content-Type": "application/json",
@@ -32,7 +30,7 @@ export default function EditAboutUs() {
                         <textarea className="input-edit-about-us" type="text" id="aboutUsEntry" name="aboutUsEntry" rows="4" maxLength="5000" required/>
                     </div>
                     <div className="button-edit-about-us">
-                        <input className="input-send-edit-about-us" type="submit" id="submit" value="Dodaj" />
+                        <input className="input-send-edit-about-us" type="submit" id="submit" value="Dodaj"/>
                     </div>
                 </div>
             </form>

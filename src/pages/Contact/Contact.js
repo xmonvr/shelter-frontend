@@ -25,7 +25,7 @@ export default function Contact() {
             <div className="box-contact">
                 <h2 className="header-contact">Kontakt</h2>
                 <div className="info-contact">
-                    <p>{contact && contact.contactEntry}</p>
+                    <p>{contact}</p>
                 </div>
             </div>
         </div>

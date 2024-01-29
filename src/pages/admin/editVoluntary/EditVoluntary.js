@@ -6,14 +6,14 @@ import {ENDPOINTS} from "../../../api/endpoints";
 export default function EditVoluntary() {
 
     const {getItem} = useLocalStorage();
+
     const handleEditVoluntary = async (event) => {
         event.preventDefault();
         const form = event.target;
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+        const volunteeringEntry = form.elements.volunteeringEntry.value;
         const token = getItem("token");
         const url = ENDPOINTS.editVoluntery;
-        const response = await axios.post(url, data,
+        const response = await axios.post(url, volunteeringEntry,
             {
                 headers: {
                         Authorization: token,

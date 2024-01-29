@@ -1,5 +1,4 @@
 import "./Donate.css";
-import React, {useState} from 'react';
 import {useParams} from "react-router-dom";
 import {ENDPOINTS} from "../../api/endpoints";
 import axios from "axios";
@@ -7,7 +6,6 @@ import axios from "axios";
 export default function Donate() {
 
     let {id} = useParams();
-    const [paymentDescription, setPaymentDescription] = useState("");
 
     const handlePayment = async (event) => {
         event.preventDefault();
@@ -16,7 +14,6 @@ export default function Donate() {
 
         let paymentData;
         if (id !== 0) {
-            setPaymentDescription(`Darowizna na zwierze ID ${id}`);
             paymentData = {
                 description: formData.get("description"),
                 buyerEmail: formData.get("buyerEmail"),
@@ -26,7 +23,6 @@ export default function Donate() {
                 productUnitPrice: formData.get("productUnitPrice")
             }
         } else {
-            setPaymentDescription("Darowizna na schronisko");
             id = 0;
             paymentData =
                 {

@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useState} from "react";
 import {Link, useLocation} from "react-router-dom";
 import axios from "axios";
 import {ENDPOINTS} from "../../api/endpoints";
@@ -14,7 +14,7 @@ export function AnimalList() {
     const queryParams = new URLSearchParams(location.search);
     const typeFilter = queryParams.get("type");
 
-    const getFilters = useMemo(() => {
+    const getAnimals = async (event) => {
         let data = {};
 
         if (typeFilter === "DOG") {
@@ -40,13 +40,8 @@ export function AnimalList() {
             };
         }
 
-        return data;
-    }, [ageMax, ageMin, gender, typeFilter, typeOfAnimal]);
-
-
-    const getAnimalList = async () => {
         try {
-            const url = ENDPOINTS.filteredAnimals + `?ageMin=${getFilters.ageMin}&ageMax=${getFilters.ageMax}&gender=${getFilters.gender}&typeOfAnimal=${getFilters.typeOfAnimal}`;
+            const url = ENDPOINTS.filteredAnimals + `?ageMin=${data.ageMin}&ageMax=${data.ageMax}&gender=${data.gender}&typeOfAnimal=${data.typeOfAnimal}`;
             const response = await axios.get(url);
             setAnimalList(response.data);
         } catch(error) {
@@ -80,7 +75,7 @@ export function AnimalList() {
     };
 
     useEffect(() => {
-        getAnimalList();
+        getAnimals();
     }, []);
 
     return (
@@ -103,7 +98,7 @@ export function AnimalList() {
                     <option value="CAT">KOT</option>
                     <option value="OTHER">INNE</option>
                 </select>
-                <input className="input-submit-filtration" type="button" value="Szukaj" onClick={getAnimalList}/>
+                <input className="input-submit-filtration" type="button" value="Szukaj" onClick={getAnimals}/>
             </form>
             <div className="animal">
                 <div className="animal-box">{animalsList && animalsList.map((animal) => (

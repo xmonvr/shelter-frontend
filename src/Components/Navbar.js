@@ -14,7 +14,6 @@ export default function Navbar() {
                     <NavLink to="/administration-page" className={({isPending, isActive, isTransitioning}) => isPending ? "pending" : isActive ? "active2" : isTransitioning ? "Transitioning" : ""}>Administracja</NavLink>
                 )}
             </div>
-
             <NavLink to="/adopt" className={({isPending, isActive, isTransitioning}) => isPending ? "pending" : isActive ? "active2" : isTransitioning ? "Transitioning" : ""}>Zaadoptuj</NavLink>
             <NavLink to={`/donate/${defaultId}`} className={({isPending, isActive}) => isPending ? "pending" : isActive ? "active2" : ""}>Wesprzyj</NavLink>
             <NavLink to="/contact" className={({isPending, isActive}) => isPending ? "pending" : isActive ? "active2" : ""}>Kontakt</NavLink>

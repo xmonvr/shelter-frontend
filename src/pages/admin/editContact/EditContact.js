@@ -7,10 +7,9 @@ export default function EditContact() {
         const token = localStorage.getItem("token");
         event.preventDefault();
         const form = event.target;
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+        const contactEntry = form.elements.contactEntry.value;
         const url =  ENDPOINTS.editContact;
-        const response = axios.post(url, data, {
+        const response = axios.post(url, contactEntry, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
