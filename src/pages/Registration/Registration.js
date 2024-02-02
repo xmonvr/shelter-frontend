@@ -12,14 +12,20 @@ export default function Registration() {
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+        const data = {
+            birthDate: formData.get("birthDate"),
+            firstName: formData.get("firstName"),
+            lastName: formData.get("lastName"),
+            password: formData.get("password"),
+            email: formData.get("email")
+        };
         await axios.post(url, data, {
             headers: {
                 "Content-Type": "application/json"
             },
         }).then(() => {
             navigate("/login");
-        }).catch(() => <p>Błąd podczas komunikacji z serwerem.</p>);
+        }).catch(() => console.error("Błąd podczas komunikacji z serwerem."));
     }
 
     return (

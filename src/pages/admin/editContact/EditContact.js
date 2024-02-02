@@ -3,6 +3,7 @@ import {ENDPOINTS} from "../../../api/endpoints";
 import axios from "axios";
 
 export default function EditContact() {
+
     const handleEditContact = (event) => {
         const token = localStorage.getItem("token");
         event.preventDefault();
@@ -14,7 +15,7 @@ export default function EditContact() {
                 "Content-Type": "application/json",
                 "Authorization": token
             }
-            });
+        });
         }
 
     return (

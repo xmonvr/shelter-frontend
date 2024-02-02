@@ -4,6 +4,7 @@ import axios from "axios";
 import {ENDPOINTS} from "../../api/endpoints";
 
 export function AnimalList() {
+
     const [ageMin, setAgeMin] = useState("");
     const [ageMax, setAgeMax] = useState("");
     const [gender, setGender] = useState("");
@@ -61,7 +62,6 @@ export function AnimalList() {
         try {
             const url = ENDPOINTS.animalImage + `?animalId=${animalId}`;
             const response = await axios.get(url, {responseType: "arraybuffer"});
-
             const blob = new Blob([response.data]);
             const imageUrl = URL.createObjectURL(blob);
 

@@ -22,6 +22,7 @@ export default function EditVoluntary() {
                 }
             )
     }
+
     return (
         <div className="container-edit-voluntary">
             <form className="form-edit-voluntary" onSubmit={handleEditVoluntary}>

@@ -7,6 +7,7 @@ import axios from "axios";
 import {ENDPOINTS} from "../../api/endpoints";
 
 export function LoginPage() {
+
     const [isOpen, setIsOpen] = useState(false);
     const {login} = useAuth();
     const navigate = useNavigate();
@@ -15,8 +16,9 @@ export function LoginPage() {
         const url = ENDPOINTS.login;
         event.preventDefault();
         const form = event.target;
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+        const email = form.elements.email.value;
+        const password = form.elements.password.value;
+        const data = {email, password};
 
         try {
             const response = await axios.post(url, data, {

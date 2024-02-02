@@ -8,10 +8,9 @@ import axios from "axios";
 import {useLocalStorage} from "../../hooks/useLocalStorage";
 
 export default function AdoptionForm() {
+
     const [isOpen, setIsOpen] = useState(false);
-
     const {id} = useParams();
-
     const {getItem} = useLocalStorage();
 
     const handleSubmit = async (event) => {
@@ -120,7 +119,6 @@ export default function AdoptionForm() {
                                 <textarea className="input-question-adoption-form" type="text" id={item} name={item} rows={4} maxLength={700} required/>
                             </div>
                         ))}
-
                     </div>
                 </div>
                 <div className="buttons-adoption-form">

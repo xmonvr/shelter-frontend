@@ -5,6 +5,7 @@ import {ENDPOINTS} from "../../../api/endpoints";
 import {useLocalStorage} from "../../../hooks/useLocalStorage";
 
 export default function EditAnimal() {
+
     const {getItem} = useLocalStorage();
 
     const [name, setName] = useState("");

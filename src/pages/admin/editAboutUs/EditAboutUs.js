@@ -4,6 +4,7 @@ import axios from "axios";
 import {useLocalStorage} from "../../../hooks/useLocalStorage";
 
 export default function EditAboutUs() {
+
     const {getItem} = useLocalStorage();
 
     const handleEditAboutUs = async (event) => {

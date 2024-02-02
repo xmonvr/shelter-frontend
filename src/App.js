@@ -8,12 +8,14 @@ import {AuthContextProvider} from "./auth/AuthContext";
 
 axios.defaults.baseURL = BASE_URL;
 function App() {
+
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userRole, setUserRole] = useState('');
 
     const setLoggedIn = (value) => {
         setIsLoggedIn(value);
     };
+
   return (
       <AuthContextProvider>
         <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} userRole={userRole} setUserRole={setUserRole}/>

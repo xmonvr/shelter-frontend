@@ -1,4 +1,3 @@
-
 import {useContext, useEffect} from "react";
 import jwt_decode from "jwt-decode";
 import {useLocalStorage} from "../hooks/useLocalStorage";
@@ -16,7 +15,6 @@ export const useAuth = () => {
     const userToken = getItem("token");
 
     if (!userToken) return;
-
     login(userToken);
   }, []);
 
@@ -30,7 +28,6 @@ export const useAuth = () => {
 
     setItem("token", token);
     setItem("user", JSON.stringify(user));
-
     setUser(user);
     setToken(token);
   };
@@ -46,9 +43,9 @@ export const useAuth = () => {
         setUser(null);
         setToken(null);
         removeItem("token");
-        removeItem("user")
+        removeItem("user");
         navigate("/login");
-      }).catch(() => <p>Błąd podczas komunikacji z serwerem.</p>);
+      }).catch(() => console.error("Błąd podczas komunikacji z serwerem."));
 
   };
 

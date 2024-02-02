@@ -2,6 +2,7 @@ import './AdministrationPage.css';
 import {Link} from "react-router-dom";
 
 export default function AdministrationPage() {
+
     return (
         <div className="administration-page">
             <h3 className="animal-header-administration-page">Zwierze</h3>
